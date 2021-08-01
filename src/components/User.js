@@ -27,12 +27,12 @@ class Login extends Component {
       username: this.state.username,
       password: this.state.password
     }
-    const res = await axios.post(apiBaseUrl + 'signin', payload,
-      {
-        auth:
-          payload
-      })
-
+    const res = await axios.post(apiBaseUrl + 'signin', payload)
+      // {
+      //   auth:
+      //     payload
+      // })
+console.log(e)
     this.setState({
       user: res.data,
       showlog:false
