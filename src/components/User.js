@@ -81,7 +81,7 @@ class Login extends Component {
         }
         {
           !this.state.showlog &&
-          <Socket />
+          <Socket user={this.state.user._id} />
         }
       </div>
     );
