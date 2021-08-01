@@ -4,6 +4,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import axios from 'axios';
 import React, { Component } from 'react';
+import Socket from './Socket';
 
 class Login extends Component {
   constructor(props) {
@@ -13,20 +14,21 @@ class Login extends Component {
       password: '',
       data: [],
       user: {},
-      showlog:true
+      showlog: true
     };
   }
   // eslint-disable-next-line no-undef
   handleSubmit = async (e) => {
-  
+
     console.log("test")
 
-    var apiBaseUrl = "http://localhost:3000/";
+    var apiBaseUrl = "http://localhost:3001/";
     var self = this;
     var payload = {
       username: this.state.username,
       password: this.state.password
     }
+    console.log(payload);
     const res = await axios.post(apiBaseUrl + 'signin', payload,
       {
         auth:
@@ -35,7 +37,7 @@ class Login extends Component {
 
     this.setState({
       user: res.data,
-      showlog:false
+      showlog: false
 
     })
 
@@ -52,32 +54,36 @@ class Login extends Component {
     return (
       <div>
         {
-          this.state.showlog && 
-        <MuiThemeProvider>
-          <div>
-            <AppBar
-              title="Login"
+          this.state.showlog &&
+          <MuiThemeProvider>
+            <div>
+              <AppBar
+                title="Login"
               />
-            <TextField
-              type="text"
-              
-              hintText="Enter your Username"
-              floatingLabelText="Username"
-              onChange={(event, newValue) => this.setState({ username: newValue.toString() })}
+              <TextField
+                type="text"
+
+                hintText="Enter your Username"
+                floatingLabelText="Username"
+                onChange={(event, newValue) => this.setState({ username: newValue.toString() })}
               />
-            <br />
-            <TextField
-              type="text"
-              hintText="Enter your Password"
-              floatingLabelText="Password"
-              onChange={(event, newValue) => this.setState({ password: newValue.toString() })}
+              <br />
+              <TextField
+                type="text"
+                hintText="Enter your Password"
+                floatingLabelText="Password"
+                onChange={(event, newValue) => this.setState({ password: newValue.toString() })}
               />
-            <br />
-            <RaisedButton label="Submit" primary={true} style={style} onClick={this.handleSubmit}>
-            </RaisedButton>     </div>
-        </MuiThemeProvider>
-            }
-            </div>
+              <br />
+              <RaisedButton label="Submit" primary={true} style={style} onClick={this.handleSubmit}>
+              </RaisedButton>     </div>
+          </MuiThemeProvider>
+        }
+        {
+          !this.state.showlog &&
+          <Socket />
+        }
+      </div>
     );
 
   }
