@@ -14,7 +14,8 @@ class Login extends Component {
       password: '',
       data: [],
       user: {},
-      showlog: true
+      showlog: true,
+      email: '',
     };
   }
   // eslint-disable-next-line no-undef
@@ -25,6 +26,7 @@ class Login extends Component {
     var apiBaseUrl = "http://localhost:3001/";
     var self = this;
     var payload = {
+      email: this.state.email,
       username: this.state.username,
       password: this.state.password
     }
@@ -70,6 +72,13 @@ class Login extends Component {
               <br />
               <TextField
                 type="text"
+                hintText="Enter your email"
+                floatingLabelText="email"
+                onChange={(event, newValue) => this.setState({ email: newValue.toString() })}
+              />
+              <br />
+              <TextField
+                type="text"
                 hintText="Enter your Password"
                 floatingLabelText="Password"
                 onChange={(event, newValue) => this.setState({ password: newValue.toString() })}
@@ -81,7 +90,7 @@ class Login extends Component {
         }
         {
           !this.state.showlog &&
-          <Socket user={this.state.user._id} />
+          <Socket user={this.state.user} />
         }
       </div>
     );

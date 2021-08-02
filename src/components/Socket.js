@@ -1,25 +1,58 @@
 import React from 'react'
 import axios from "axios";
 import io from 'socket.io-client';
-const SERVER_URL = process.env.SERVER_URL || 'localhost:5000/';
+import Messages from './messages'
+const SERVER_URL = process.env.SERVER_URL || 'localhost:3001/';
 const socket = io(SERVER_URL, { transports: ['websocket'] });
 
 export class Socket extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      soket:null
 
+      message: "",
+      user: "",
+      allUsers: [],
+      receiverId: ""
     }
   }
 
   componentDidMount() {
- 
+    let user = this.props.user;
+    console.log(user);
+    this.setState({ user: user })
+
     socket.on('connect', () => {
-      socket.emit('join', { name:"workkk"});
-      socket.on('test', (payload) => {
-      //  console.log(payload)
+      console.log("connect");
+
+
+
+      socket.emit('adduser', { ...user })
+
+      socket.on("getUsers", (payload) => {
+        let usersarrayst = [];
+        console.log(payload, "hhhhhoooo");
+        payload.map(userp => {
+          if (userp.userId !== this.state.user._id) {
+            usersarrayst.push(userp)
+          }
+          return
+        })
+        console.log(usersarrayst, "aaaaaaaaaaa");
+        this.setState({ allUsers: usersarrayst })
       });
+
+      socket.on('offlineUser', (payload) => {
+        console.log('HELLO?', payload)
+
+
+      });
+
+
+
+
+
+
     });
 
     // socket.current.emit("addUser",this.props.user._id);
@@ -41,10 +74,35 @@ export class Socket extends React.Component {
 
 
   }
+
   render() {
     return (
       <div>
-        hello from socket
+        {
+          this.state.allUsers.map(
+            (user) => {
+              <p onClick={() => { this.setState({ receiverId: user.userId }) }}>{user.userId}</p>
+            }
+          )
+        }
+        <div>
+
+          <input
+            type="text"
+            hintText="Enter your message"
+            floatingLabelText="message"
+            onChange={(event) => this.setState({ message: event.target.value })}
+          />
+          <button onClick={() => {
+            socket.emit('sendmassege', {
+              text: this.state.message, senderId: this.state.user._id,
+              receiverId: "666666"
+            })
+          }}>send</button>
+        </div>
+
+
+
       </div>
     )
   }
