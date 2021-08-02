@@ -13,13 +13,14 @@ export class Socket extends React.Component {
       message: "",
       user: "",
       allUsers: [],
-      receiverId: ""
+      receiverId: "",
+      conversationId: null
     }
   }
 
   componentDidMount() {
     let user = this.props.user;
-    console.log(user);
+    // console.log(user);
     this.setState({ user: user })
 
     socket.on('connect', () => {
@@ -31,58 +32,134 @@ export class Socket extends React.Component {
 
       socket.on("getUsers", (payload) => {
         let usersarrayst = [];
-        console.log(payload, "hhhhhoooo");
         payload.map(userp => {
           if (userp.userId !== this.state.user._id) {
             usersarrayst.push(userp)
           }
           return
         })
-        console.log(usersarrayst, "aaaaaaaaaaa");
         this.setState({ allUsers: usersarrayst })
       });
 
       socket.on('offlineUser', (payload) => {
-        console.log('HELLO?', payload)
 
 
       });
 
 
+      socket.on('getMessage', (payload) => {
+      });
 
-
+      this.getConversations()
 
 
     });
 
-    // socket.current.emit("addUser",this.props.user._id);
-    // socket.current.on("getUsers", (users) => {
-    //   setOnlineUsers(
-    //     user.followings.filter((f) => users.some((u) => u.userId === f))
-    //   );
-    // });
 
-    // socket.current.on("getMessage", (data) => {
-    //   // setArrivalMessage({
-    //   //   sender: data.senderId,
-    //   //   text: data.text,
-    //   //   createdAt: Date.now(),
-    //   // });
-    // });
-
-
+  
 
 
   }
+
+
+
+
+   getConversations = async () => 
+    { 
+      
+      console.log("testdidmount",this.state.user._id)
+      try 
+      { 
+
+      const res = await axios.get(`http://localhost:3001/conversations/${this.state.user._id}`)
+      ; 
+
+    this.setState({
+      conversationArr:res.data
+    })
+    
+
+    console.log(res.data,"respoonse")
+    } 
+
+
+
+
+      catch (err) { console.log(err);
+      
+        console.log("errrrroe")
+
+      } 
+    
+    };
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  conversation = async () => {
+
+    console.log("onclick")
+    const payload = {
+      senderId: this.state.user._id,
+      receiverId: this.state.receiverId
+
+    }
+    const conversation = await axios.post('http://localhost:3001/conversations', payload)
+
+
+
+    this.setState({
+      conversationId: conversation.data._id
+    })
+    //const res = await axios.post(apiBaseUrl + 'signin', payload,
+
+  }
+
+
+  saveMessage = async () => {
+    const payload = {
+      conversationId: this.state.conversationId,
+      sender: this.state.user._id,
+      text: this.state.message
+
+    }
+
+
+    const savedmessage = await axios.post('http://localhost:3001/messages', payload)
+
+
+
+    // console.log("saved Msg", savedmessage.data)
+  }
+
 
   render() {
     return (
       <div>
         {
-          this.state.allUsers.map(
-            (user) => {
-              <p onClick={() => { this.setState({ receiverId: user.userId }) }}>{user.userId}</p>
-            }
+          this.state.allUsers.map((user) => {
+            return (
+              <p onClick={() => {
+                //Return all other users
+                this.setState({ receiverId: user.userId })
+                console.log("clicked")
+                this.conversation()
+
+              }}>{user.userId}</p>
+            )
+          }
           )
         }
         <div>
@@ -96,8 +173,10 @@ export class Socket extends React.Component {
           <button onClick={() => {
             socket.emit('sendmassege', {
               text: this.state.message, senderId: this.state.user._id,
-              receiverId: "666666"
+              receiverId: this.state.receiverId
             })
+
+            this.saveMessage()
           }}>send</button>
         </div>
 
