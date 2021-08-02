@@ -9,16 +9,21 @@ export class Socket extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      currentChat: [],
       message: "",
       user: "",
       allUsers: [],
       receiverId: "",
-      conversationId: null
+      conversationId: null,
+      arraivalmessage: "",
+      messagearray: [],
+
     }
   }
 
   componentDidMount() {
+    this.getcoid();
+
     let user = this.props.user;
     // console.log(user);
     this.setState({ user: user })
@@ -48,6 +53,9 @@ export class Socket extends React.Component {
 
 
       socket.on('getMessage', (payload) => {
+        console.log(payload, "gggggggggg");
+
+        this.setState({ message: payload.text })
       });
 
       this.getConversations()
@@ -56,7 +64,7 @@ export class Socket extends React.Component {
     });
 
 
-  
+
 
 
   }
@@ -64,36 +72,36 @@ export class Socket extends React.Component {
 
 
 
-   getConversations = async () => 
-    { 
-      
-      console.log("testdidmount",this.state.user._id)
-      try 
-      { 
+  getConversations = async () => {
+
+    console.log("testdidmount", this.state.user._id)
+    try {
 
       const res = await axios.get(`http://localhost:3001/conversations/${this.state.user._id}`)
-      ; 
+        ;
 
-    this.setState({
-      conversationArr:res.data
-    })
-    
-
-    console.log(res.data,"respoonse")
-    } 
+      this.setState({
+        conversationArr: res.data
+      })
 
 
+      console.log(res.data, "respoonse")
+    }
 
 
-      catch (err) { console.log(err);
-      
-        console.log("errrrroe")
 
-      } 
-    
-    };
 
-  
+    catch (err) {
+      console.log(err);
+
+      console.log("errrrroe")
+
+    }
+
+
+  };
+
+
 
 
 
@@ -120,15 +128,14 @@ export class Socket extends React.Component {
 
 
 
-    this.setState({
-      conversationId: conversation.data._id
-    })
+
     //const res = await axios.post(apiBaseUrl + 'signin', payload,
 
   }
 
 
   saveMessage = async () => {
+    console.log(this.state.conversationId);
     const payload = {
       conversationId: this.state.conversationId,
       sender: this.state.user._id,
@@ -141,9 +148,33 @@ export class Socket extends React.Component {
 
 
 
-    // console.log("saved Msg", savedmessage.data)
+    console.log("saved Msg", savedmessage.data)
   }
+  getcoid = async () => {
+    try {
 
+      const res = await axios.get(`http://localhost:3001/find/${this.state.user._id}/${this.state.receiverId}`);
+      console.log(res, "holls");
+      // this.setState({ messagearray: res.data })
+      this.setState({
+        conversationId: res.data._id
+      })
+      this.getMessages();
+    } catch (err) {
+      console.log(err);
+    }
+
+  };
+  getMessages = async () => {
+    try {
+      const res = await axios.get("http://localhost:3001/messages/" + this.state.conversationId);
+      console.log(res, "maaaaassseeeeegggggggg");
+      this.setState({ messagearray: res.data })
+
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   render() {
     return (
@@ -156,6 +187,7 @@ export class Socket extends React.Component {
                 this.setState({ receiverId: user.userId })
                 console.log("clicked")
                 this.conversation()
+                this.getcoid()
 
               }}>{user.userId}</p>
             )
@@ -173,13 +205,20 @@ export class Socket extends React.Component {
           <button onClick={() => {
             socket.emit('sendmassege', {
               text: this.state.message, senderId: this.state.user._id,
-              receiverId: this.state.receiverId
+              receiverId: this.state.receiverId,
+              conversationId: this.state.conversationId
             })
-
+            this.state.messagearray.push({ "sender": this.state.user._id, "text": this.state.message })
             this.saveMessage()
           }}>send</button>
         </div>
 
+        {this.state.messagearray.map((ele) => {
+          return (<div >
+            <div> {ele.sender}</div>
+            <div> {ele.text}</div>
+          </div>)
+        })}
 
 
       </div>
