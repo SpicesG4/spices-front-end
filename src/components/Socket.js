@@ -17,12 +17,15 @@ export class Socket extends React.Component {
       conversationId: null,
       arraivalmessage: "",
       messagearray: [],
+      onlineMessage: [],
+      messagerec: ""
 
     }
   }
 
   componentDidMount() {
     this.getcoid();
+
 
     let user = this.props.user;
     // console.log(user);
@@ -31,7 +34,10 @@ export class Socket extends React.Component {
     socket.on('connect', () => {
       console.log("connect");
 
-
+      socket.on('getallmessages', (payload) => {
+        console.log(payload, 'onnnliinnnn');
+        this.setState({ onlineMessage: payload })
+      })
 
       socket.emit('adduser', { ...user })
 
@@ -52,16 +58,24 @@ export class Socket extends React.Component {
       });
 
 
-      socket.on('getMessage', (payload) => {
+      socket.on('getoneMessage', (payload) => {
         console.log(payload, "gggggggggg");
 
         this.setState({ message: payload.text })
       });
+      // getoneMessagerecev
 
+      socket.on('getoneMessagerecev', (payload) => {
+        console.log(payload, "ggggggggggrrrrr");
+
+        this.setState({ messagerec: payload.text })
+      });
       this.getConversations()
 
 
     });
+
+
 
 
 
@@ -200,13 +214,15 @@ export class Socket extends React.Component {
             type="text"
             hintText="Enter your message"
             floatingLabelText="message"
-            onChange={(event) => this.setState({ message: event.target.value })}
+            onChange={(event) => this.setState({ message: event.target.value }
+            )}
           />
           <button onClick={() => {
             socket.emit('sendmassege', {
               text: this.state.message, senderId: this.state.user._id,
               receiverId: this.state.receiverId,
               conversationId: this.state.conversationId
+
             })
             this.state.messagearray.push({ "sender": this.state.user._id, "text": this.state.message })
             this.saveMessage()
@@ -219,6 +235,16 @@ export class Socket extends React.Component {
             <div> {ele.text}</div>
           </div>)
         })}
+
+        {
+          this.state.onlineMessage.length &&
+          this.state.onlineMessage.map((ele) => {
+            return (<div >
+              <div> {ele.senderId}</div>
+              <div> {ele.text}</div>
+            </div>)
+          })}
+        {/* {this.state.message}...... */}
 
 
       </div>
