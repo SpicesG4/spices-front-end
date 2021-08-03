@@ -23,71 +23,6 @@ export class Socket extends React.Component {
 
   componentDidMount() {
 
-    let user = this.props.user;
-    // console.log(user);
-    this.setState({ user: user })
-
-    socket.on('connect', () => {
-      console.log("connect");
-
-      socket.emit('adduser', { ...user })
-//return all users expect current user(onmline)
-      socket.on("getUsers", (payload) => {
-        let usersarrayst = [];
-        payload.map(userp => {
-          if (userp.userId !== this.state.user._id) {
-            usersarrayst.push(userp)
-          }
-          return
-        })
-        this.setState({ allUsers: usersarrayst })
-      });
-
-      socket.on('offlineUser', (payload) => {
-
-
-      });
-
-
-      socket.on('getMessage', (payload) => {
-        console.log(payload.text, "gggggggggg");
-
-        this.setState({ message: payload.text })
-
-        console.log(this.state.message,"|mssg")
-      });
-
-
-
-      // let printConv = () => {
-      // socket.on('getMessages', (payload) => {
-      //   console.log(payload.text, "gggggggggg");
-
-      //   this.setState({ message: payload.text })
-      // })};
-     // this.getConversations()
-
-
-    });
-
-
-
-  let printConvself = () => {
-      socket.on('getMessages', (payload) => {
-        console.log(payload, "data");
-
-        this.setState({ message: payload.text })
-      })};
-
-
-
-    
-        socket.on('plzjoin', (payload) => {
-console.log("pkeeafaasd")
-          socket.emit("almostjoined", payload);
-        })
-
-
 
   }
 
@@ -95,51 +30,26 @@ console.log("pkeeafaasd")
 
 
   getConversations = async () => {
-
-    // console.log("testdidmount", this.state.user._id)
     try {
 
-      const res = await axios.get(`http://localhost:3001/conversations/${this.state.user._id}`)
-        ;
-
+      const res = await axios.get(`http://localhost:3001/conversations/${this.state.user._id}`);
       this.setState({
         conversationArr: res.data
       })
 
-
-      // console.log(res.data, "respoonse")
     }
-
-
-
 
     catch (err) {
-      // console.log(err);
+      console.log(err);
 
-      // console.log("errrrroe")
+      console.log("error")
 
     }
-
-
   };
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
   conversation = async () => {
-    // console.log("onclick")
     const payload = {
       senderId: this.state.user._id,
       receiverId: this.state.receiverId
@@ -158,29 +68,27 @@ console.log("pkeeafaasd")
       text: this.state.message
 
     }
-
-
     const savedmessage = await axios.post('http://localhost:3001/messages', payload)
 
-
-
-    // console.log("saved Msg", savedmessage.data)
   }
+
+
   getcoid = async () => {
     try {
 
       const res = await axios.get(`http://localhost:3001/find/${this.state.user._id}/${this.state.receiverId}`);
-      // console.log(res, "holls");
-      // this.setState({ messagearray: res.data })
+
       this.setState({
         conversationId: res.data._id
       })
       this.getMessages();
     } catch (err) {
-      // console.log(err);
+        console.log(err)
     }
 
   };
+
+
   getMessages = async () => {
     try {
       const res = await axios.get("http://localhost:3001/messages/" + this.state.conversationId);
@@ -207,6 +115,8 @@ console.log("first time ," ,payload)
 
   }
 
+
+  
   render() {
     return (
       <div>
@@ -255,7 +165,7 @@ console.log("first time ," ,payload)
 <div>
 
 
-   <p> {this.state.message}</p>
+   <p> {this.state.message} hello</p>
   
 </div>
       </div>
