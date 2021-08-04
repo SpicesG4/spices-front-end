@@ -5,6 +5,7 @@ import Messages from './messages'
 const SERVER_URL = process.env.SERVER_URL || 'localhost:3001/';
 const socket = io(SERVER_URL, { transports: ['websocket'] });
 
+
 export class Socket extends React.Component {
   constructor(props) {
     super(props);
@@ -17,105 +18,73 @@ export class Socket extends React.Component {
       conversationId: null,
       arraivalmessage: "",
       messagearray: [],
-
+      loggedInuser:null,
+      str:"",
+      allmsg:[]
     }
   }
 
   componentDidMount() {
+    let user = this.props.user;
+
+    this.setState({
+      loggedInuser:user
+    })
+
+    console.log(user)
+    socket.on('connect', () => {
+      console.log("connect");
+
+socket.emit('adduser', { ...user })
 
 
-  }
+// return all users expect current user(onmline)
+      socket.on("getUsers", (payload) => {
+        let usersarrayst = [];
 
-
-
-
-  getConversations = async () => {
-    try {
-
-      const res = await axios.get(`http://localhost:3001/conversations/${this.state.user._id}`);
-      this.setState({
-        conversationArr: res.data
-      })
-
-    }
-
-    catch (err) {
-      console.log(err);
-
-      console.log("error")
-
-    }
-  };
-
-
-
-  conversation = async () => {
-    const payload = {
-      senderId: this.state.user._id,
-      receiverId: this.state.receiverId
-    }
-    const conversation = await axios.post('http://localhost:3001/conversations', payload)
-
-
-  }
-
-
-  saveMessage = async () => {
-    // console.log(this.state.conversationId);
-    const payload = {
-      conversationId: this.state.conversationId,
-      sender: this.state.user._id,
-      text: this.state.message
-
-    }
-    const savedmessage = await axios.post('http://localhost:3001/messages', payload)
-
-  }
-
-
-  getcoid = async () => {
-    try {
-
-      const res = await axios.get(`http://localhost:3001/find/${this.state.user._id}/${this.state.receiverId}`);
-
-      this.setState({
-        conversationId: res.data._id
-      })
-      this.getMessages();
-    } catch (err) {
-        console.log(err)
-    }
-
-  };
-
-
-  getMessages = async () => {
-    try {
-      const res = await axios.get("http://localhost:3001/messages/" + this.state.conversationId);
-      // console.log(res, "maaaaassseeeeegggggggg");
-      this.setState({ messagearray: res.data })
-
-    } catch (err) {
-      console.log(err);
-    }
-  };
+        payload.map(userp => {
+          if (userp.userId !== user._id) {
+            usersarrayst.push(userp)
+          }
+          return
+        })
+        this.setState({ allUsers: usersarrayst })
+      });
 
 
 
-  joinroom=()=>{
+      socket.on("getoneMessage", (payload) => {
+  
+  this.state.messagearray.push({ "sender": payload.senderId, "text": payload.text })
 
-    const payload = {
-      senderId: this.state.user._id,
-      receiverId: this.state.receiverId,
-      room:Date.now()
-    }
-console.log("first time ," ,payload)
 
-    socket.emit('joinroon', payload)
+      });
+
+      //getallmessages
+
+      socket.on("getallmessages", async (payload) => {
+        // console.log("recived user", payload)
+        
+
+        await this.setState({
+          allmsg:payload
+        })
+
+
+        console.log("recived user", this.state.allmsg)
+
+        // this.state.allmsg.push({ "sender": payload.senderId, "text": payload.text })
+      
+      
+            });
+    });
 
   }
 
 
+
+
+  
   
   render() {
     return (
@@ -126,10 +95,9 @@ console.log("first time ," ,payload)
               <p onClick={() => {
                 //Return all other users
                 this.setState({ receiverId: user.userId })
+                socket.emit('reciveID',user.userId)
+
                 console.log("clicked")
-                this.conversation()
-                this.getcoid()
-                this.joinroom()
 
               }}>{user.userId}</p>
             )
@@ -146,29 +114,40 @@ console.log("first time ," ,payload)
           />
           <button onClick={() => {
             socket.emit('sendmassege', {
-              text: this.state.message, senderId: this.state.user._id,
+              text: this.state.message,
               receiverId: this.state.receiverId,
+              senderId:this.state.loggedInuser._id,
               conversationId: this.state.conversationId
             })
             this.state.messagearray.push({ "sender": this.state.user._id, "text": this.state.message })
-            this.saveMessage()
           }}>send</button>
         </div>
 
-        {this.state.messagearray.map((ele) => {
+
+
+
+
+
+  
+   {this.state.loggedInuser &&
+   <p> 
+   {this.state.loggedInuser.username}
+   </p>
+   }
+
+
+{
+  this.state.allmsg.length  &&
+
+  this.state.allmsg.map((ele) => {
           return (<div >
-            <div> {ele.sender} ff</div>
-            <div> {ele.text} fefe</div>
+            <div> mafa</div>
+            <div> {ele.text} </div>
           </div>)
         })}
 
-<div>
-
-
-   <p> {this.state.message} hello</p>
-  
 </div>
-      </div>
+   
     )
   }
 }

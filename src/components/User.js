@@ -91,7 +91,10 @@ class Login extends Component {
         }
         {
           !this.state.showlog &&
-          <Socket user={this.state.user} />
+          // <Socket user={this.state.user} />
+          <Chat user={this.state.user} />
+
+          
         }
       </div>
     );
