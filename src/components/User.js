@@ -5,6 +5,7 @@ import TextField from 'material-ui/TextField';
 import axios from 'axios';
 import React, { Component } from 'react';
 import Socket from './Socket';
+import Chat from './Chat';
 
 class Login extends Component {
   constructor(props) {
@@ -90,7 +91,10 @@ class Login extends Component {
         }
         {
           !this.state.showlog &&
-          <Socket user={this.state.user} />
+          // <Socket user={this.state.user} />
+          <Chat user={this.state.user} />
+
+          
         }
       </div>
     );
