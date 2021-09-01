@@ -1,4 +1,4 @@
-// import SignUpForm from './components/SignUpForm';
+
 import './App.css';
 import AuthProvider from './context/auth';
 import User from './components/User.jsx'
