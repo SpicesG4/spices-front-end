@@ -1,12 +1,16 @@
-import User from './components/User';
+// import SignUpForm from './components/SignUpForm';
 import './App.css';
-// import main from './components/main'
+import AuthProvider from './context/auth';
+import User from './components/User.jsx'
+// import SignInForm from './components/SignInForm.jsx'
 
 function App() {
   return (
-    <div className="App">
-      <User />
-    </div>
+    <>
+      <AuthProvider>
+        <User />
+      </AuthProvider>
+    </>
   );
 }
 
