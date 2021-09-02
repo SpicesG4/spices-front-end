@@ -12,7 +12,7 @@ import Home from '../../src/components/pages/home/Home'
 function Auth(props) {
 
 
-  const { loggedIn, user, verified } = useContext(AuthContext);
+  const { loggedIn, user } = useContext(AuthContext);
 
   // let okToRender = loggedIn  false;
   return (
@@ -21,13 +21,12 @@ function Auth(props) {
       <If condition={loggedIn}>
 
         <Then>
-          <Unless condition={verified}>
-            {console.log(user, 'unless')}
+          <Unless condition={user?.verified}>
             you need to virfy your email
             <SignInForm />
           </Unless>
-          <When condition={verified}><Home/>
-          {console.log(user, 'when')}
+          <When condition={user?.verified}><Home />
+
           </When>
         </Then>
         <Else>
