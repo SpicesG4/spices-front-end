@@ -13,12 +13,12 @@ export const AuthContext = React.createContext();
 function Auth(props) {
   const [loggedIn, setLoggedIn] = useState(false)
   const [user, setUser] = useState({})
-  const [verified, setVerified] = useState(false)
+  const [verified, setVerified] = useState(true)
+  
   let setLoginState = (loggedIn, token, user) => {
     cookie.save('auth', token);
-    setUser(user);
+    // setUser(user);
     setLoggedIn(loggedIn);
-
   };
 
 
@@ -29,14 +29,11 @@ function Auth(props) {
       const res = await superagent
         .post(`${API}/signin`)
         .set('authorization', `Basic ${base64.encode(`${username}:${password}`)}`)
-      console.log(res.body);
+      console.log('res body',res.body.user);
+
       validateToken(res.body.token);
-      setUser(res.body)
-        // setVerified(res.body.verified);
-
-        ;
-
-
+       setUser(res.body.user)
+       setVerified(res.body.user.verified);
 
     } catch (error) {
       console.error('LOGIN ERROR', error.message);
@@ -62,15 +59,17 @@ function Auth(props) {
       const response = await superagent
         .post(`${API}/signup`, { username, password, role, email });
       validateToken(response.body.token);
+      setVerified(response.body.user.verified);
+
     } catch (e) {
       console.error('Signup Error', e.message);
-
     }
   };
 
   useEffect(() => {
     const token = cookie.load('auth');
     validateToken(token);
+    console.log(token, 'token')
   }, [])
 
 

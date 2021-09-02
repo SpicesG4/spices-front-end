@@ -99,7 +99,7 @@ function Signup(props) {
             Signup
           </Button>
           
-<Link to="/singin">
+<Link to="/signin">
   <Button>Signin</Button>
 </Link>
         </card>
