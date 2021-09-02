@@ -48,10 +48,10 @@ function Login(props) {
           }}>Logout</Button>
         </Then>
         <Else>
-          <form style={{ "width": "28rem", "margin-left": "auto", "margin-top": "0px", "padding-top": "11px" }}>
-            <input type="text" name="email" placeholder="Enter email" onChange={handleChange} />
+          <form style={{ "width": "28rem", "margin-left": "auto", "margin-top": "0px", "padding-top": "11px" }} >
+            <input type="text" name="email" placeholder="Enter email" onChange={handleChange} required="true" />
             {/* <input type="text" name="username" placeholder="Enter Username" onChange={handleChange} /> */}
-            <input type="password" name="password" placeholder="Enter Password" onChange={handleChange} />
+            <input type="password" name="password" placeholder="Enter Password" onChange={handleChange} required="true" />
             <Button intent="danger" onClick={handleSubmit}>Login</Button>
           </form>
         </Else>
