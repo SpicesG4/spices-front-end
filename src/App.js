@@ -1,15 +1,35 @@
 
 import './App.css';
-import AuthProvider from './context/auth';
-import User from './components/User.jsx'
+import {AuthContext} from './context/auth';
+import { BrowserRouter as Router,Switch,Route,Redirect} from "react-router-dom";
+import Login from  "./components/pages/login/login";
+import Signup from './components/pages/signup/signup';
+import Home from "./components/pages/home/Home";
+import { useContext } from "react";
+import Profile from "./components/pages/profile/Profile"
+// import User from './components/User.jsx';
+
 // import SignInForm from './components/SignInForm.jsx'
 
+
 function App() {
-  return (
+  const { loggedIn, user, verified } = useContext(AuthContext);
+    return (
     <>
-      <AuthProvider>
-        <User />
-      </AuthProvider>
+    <Router>
+      <Switch>
+        <Route exact path="/">
+          {user ? <Home /> : <Signup />}
+        </Route>
+        <Route path="/signin">{verified ? <Redirect to="/" /> : <Login />}</Route>
+        <Route path="/signup">
+          {verified ? <Redirect to="/" /> : <Signup />}
+        </Route>
+        <Route path="/profile/:username">
+          <Profile />
+        </Route>
+      </Switch>
+    </Router>
     </>
   );
 }
