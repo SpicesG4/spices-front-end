@@ -4,6 +4,7 @@ import SignUpForm from './SignUpForm.jsx'
 import SignInForm from './SignInForm.jsx'
 import { If, Else, Then, When, Unless } from 'react-if';
 import Home from '../../src/components/pages/home/Home'
+import ChefRecipes from './chefRecipes/ChefRecipes';
 
 
 
@@ -25,17 +26,18 @@ function Auth(props) {
             you need to virfy your email
             <SignInForm />
           </Unless>
-          <When condition={user?.verified}><Home />
-
+          <When condition={user?.verified}>
+            {/* <Home /> */}
+<ChefRecipes/>
           </When>
         </Then>
         <Else>
-          <dev style={{ textAlign: 'center', marginTop: '100px' }}>
+          <div style={{ textAlign: 'center', marginTop: '100px' }}>
             <SignUpForm />
             <p>You need to Signup / Signin </p>
             {/* <Signup /> */}
 
-          </dev>
+          </div>
         </Else>
       </If>
     </div>

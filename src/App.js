@@ -12,6 +12,8 @@ import User from './components/User.jsx';
 
 // import SignInForm from './components/SignInForm.jsx'
 import PrimarySearchAppBar from "./components/header/Header"
+import Recipe from './components/recipe/Recipe';
+import ChefRecipes from './components/chefRecipes/ChefRecipes';
 
 
 function App() {
@@ -24,7 +26,8 @@ function App() {
         <Switch>
           <User />
           <Route exact path="/">
-            <Home />
+            {/* <Home /> */}
+            {/* <ChefRecipes/> */}
           </Route>
           <Route path="/profile">
             <Profile />

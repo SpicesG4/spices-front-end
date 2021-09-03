@@ -13,12 +13,14 @@ export const AuthContext = React.createContext();
 function Auth(props) {
   const [loggedIn, setLoggedIn] = useState(false)
   const [user, setUser] = useState({})
-
+  const [token, setToken] = useState("")
 
   let setLoginState = (loggedIn, token, user) => {
     cookie.save('auth', token);
     setUser(user?.username);
     setLoggedIn(loggedIn);
+    setToken(token);
+    
   };
 
 
@@ -74,7 +76,7 @@ function Auth(props) {
   return (
     <div>
       <AuthContext.Provider
-        value={{ loggedIn, setLoggedIn, user, setUser, validateToken, logout, login, setLoginState, signup }}
+        value={{ loggedIn, setLoggedIn, user, setUser, validateToken, logout, login, setLoginState, signup ,token}}
       >
         {props.children}
       </AuthContext.Provider>
