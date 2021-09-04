@@ -14,18 +14,18 @@ function Signup(props) {
 
   const handleChange = (e) => {
     if (e.target.name === 'username') {
-      console.log(e.target.value);
+      // console.log(e.target.value);
       setUsername(e.target.value);
     } else if (e.target.name === 'password') {
-      console.log(e.target.value);
+      // console.log(e.target.value);
       setPassword(e.target.value);
     } else if (e.target.name === 'email') {
-      console.log(e.target.value);
+      // console.log(e.target.value);
       setEmail(e.target.value);
     }
 
     else {
-      console.log(e.target.value);
+      // console.log(e.target.value);
       setRole(e.target.value);
     }
   };

@@ -12,7 +12,7 @@ import axios from "axios";
 
 export default function Edit({idx,recipes,getid}) {
 
-  console.log(idx,"hhh",recipes)
+  // console.log(idx,"hhh",recipes)
   const { user, token } = useContext(AuthContext);
 
   const description = useRef();
@@ -20,19 +20,19 @@ export default function Edit({idx,recipes,getid}) {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    console.log(recipes)
+    // console.log(recipes)
     const newPost = {
       userId: user._id,
       description: description.current.value,
     };
     if (file) {
-      console.log("file")
+      // console.log("file")
       const data = new FormData();
       const fileName = Date.now() + file.name;
       data.append("name", fileName);
       data.append("file", file);
       newPost.img = fileName;
-      console.log(newPost);
+      // console.log(newPost);
       try {
         await axios.post("http://localhost:3001/upload", data, {
           headers: {

@@ -20,10 +20,10 @@ function Login(props) {
     //   setUsername(e.target.value);
     // } else 
     if (e.target.name === 'password') {
-      console.log(e.target.value);
+      // console.log(e.target.value);
       setPassword(e.target.value);
     } else if (e.target.name === 'email') {
-      console.log(e.target.value);
+      // console.log(e.target.value);
       setEmail(e.target.value);
     }
   };

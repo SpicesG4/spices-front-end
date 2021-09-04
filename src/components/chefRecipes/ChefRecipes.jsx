@@ -5,6 +5,7 @@ import axios from "axios";
 import { AuthContext } from "../../context/auth";
 import Share from "../share/Share";
 
+
 export default function ChefRecipes({ username }) {
   const [recipes, setRecipes] = useState([]);
   const { user,token } = useContext(AuthContext);
@@ -15,7 +16,7 @@ export default function ChefRecipes({ username }) {
     const res = user.username
       ? await axios.get("http://localhost:3001/profile/" + user.username)
       : await axios.get("http://localhost:3001/getallfood/" + user._id);
-      console.log(res.data)
+      // console.log(res.data)
     setRecipes(
       res.data.sort((p1, p2) => {
         return new Date(p2.createdAt) - new Date(p1.createdAt);
@@ -32,7 +33,7 @@ export default function ChefRecipes({ username }) {
 
 
   const handleDelete = async (i) => {
-    console.log(recipes)
+    // console.log(recipes)
     const data = await axios.delete("http://localhost:3001/deletefood/" + recipes[i]._id, {
       headers: {
         Authorization: token
@@ -45,7 +46,7 @@ export default function ChefRecipes({ username }) {
   
   }
 const getid = (idx)=>{
-  console.log("mmm")
+  // console.log("mmm")
 return recipes[idx]._id
 }
   
@@ -53,11 +54,11 @@ return recipes[idx]._id
   return (
     <div className="feed">
       <div className="feedWrapper">
-        {console.log(recipes)}
+        {/* {console.log(recipes)} */}
         {(!username || username === user.username) && <Share />}
         {recipes.map((p,idx) => (
           <Recipe key={p._id} recipes={p} handleDelete={handleDelete}  idx={idx} getid={getid} />
-        ))}  
+          ))}  
       </div>
     </div>
   );

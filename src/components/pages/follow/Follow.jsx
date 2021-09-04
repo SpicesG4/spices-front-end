@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-no-undef */
 import React, { useContext,useEffect ,useState} from 'react'
 import { AuthContext } from '../../../context/auth'
+// import Friends from '../../friends/Friends';
 import axios from "axios";
 import { useParams } from 'react-router';
 function Follow() {
@@ -55,6 +56,9 @@ console.log(id)
 
     return (
         <div>
+            {/* {console.log(user, 'Home')} */}
+            hello from Followers
+            {/* <Friends user={user}/> */}
             {console.log(user, 'Home')}
 
 

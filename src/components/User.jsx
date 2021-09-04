@@ -6,6 +6,7 @@ import { If, Else, Then, When, Unless } from 'react-if';
 import Home from '../../src/components/pages/home/Home'
 import ChefRecipes from './chefRecipes/ChefRecipes';
 
+import Friends from "../components/friends/Friends"
 
 
 
@@ -29,6 +30,7 @@ function Auth(props) {
           <When condition={user?.verified}>
             {/* <Home /> */}
 {/* <ChefRecipes/> */}
+
           </When>
         </Then>
         <Else>

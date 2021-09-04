@@ -40,12 +40,12 @@ export default function Post({ recipes ,handleDelete, idx,getid}) {
   useEffect(() => {
    
     setIsLiked(recipes.likes.includes(currentUser._id));
-    console.log(token);
+    // console.log(token);
   }, [currentUser._id, recipes.likes]);
 
   useEffect(() => {
 
-    console.log(recipes,"res");
+    // console.log(recipes,"res");
     const fetchUser = async () => {
       const res = await axios.get(`http://localhost:3001/users?userId=${recipes.userId}`);
       setUser(res.data);
