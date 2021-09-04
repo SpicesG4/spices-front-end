@@ -44,7 +44,10 @@ export default function ChefRecipes({ username }) {
      fetchRecipes();
   
   }
-
+const getid = (idx)=>{
+  console.log("mmm")
+return recipes[idx]._id
+}
   
 
   return (
@@ -53,7 +56,7 @@ export default function ChefRecipes({ username }) {
         {console.log(recipes)}
         {(!username || username === user.username) && <Share />}
         {recipes.map((p,idx) => (
-          <Recipe key={p._id} recipes={p} handleDelete={handleDelete} idx={idx} />
+          <Recipe key={p._id} recipes={p} handleDelete={handleDelete}  idx={idx} getid={getid} />
         ))}  
       </div>
     </div>

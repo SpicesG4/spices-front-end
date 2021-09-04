@@ -200,6 +200,25 @@ export default function PrimarySearchAppBar() {
               inputProps={{ 'aria-label': 'search' }}
             />
           </div>
+
+          <Link to="/home" style={{ textDecoration: "none" }}>
+          Home  
+
+             </Link>
+          
+          <Link to="/profile" style={{ textDecoration: "none" }}>
+           Profile  
+        </Link>
+
+        <Link to="/followers" style={{ textDecoration: "none" }}>
+           Followers  
+        </Link>
+
+        <Link to="/admin" style={{ textDecoration: "none" }}>
+           Admin panel  
+        </Link>
+
+
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton aria-label="show 4 new mails" color="inherit">
