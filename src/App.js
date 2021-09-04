@@ -5,8 +5,8 @@ import { SettingContext } from './context/setting';
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 // import Login from  "./components/pages/login/login";
 // import Signup from './components/pages/signup/signup';
-import { useContext } from "react";
-import Profile from "./components/pages/profile/Profile"
+import { useContext, useState } from "react";
+// import Profile from "./components/pages/profile/Profile"
 import User from './components/User.jsx';
 
 // import SignInForm from './components/SignInForm.jsx'
@@ -16,14 +16,15 @@ import Recipe from './components/recipe/Recipe';
 //Home
 import Home from "./components/pages/home/Home"
 //Profile
-import ChefRecipes from './components/chefRecipes/ChefRecipes';
+import Profile from './components/pages/profile/Profile';
 //Follow
-import Follow from "./components/pages/follow/Follow"
+// import Follow from "./components/pages/follow/Follow"
 
 //Admin
 import Admin from "./components/pages/admin/Admin"
 
 function App() {
+  
   const { loggedIn, user, verified } = useContext(AuthContext);
   return (
     <>
@@ -42,13 +43,16 @@ function App() {
 
 {/* //Make it dynamic */}
           <Route exact path="/profile">
-                   <ChefRecipes/>
+                   <Profile/>
+          </Route>
+          <Route exact path="/profile/:username">
+                   <Profile/>
           </Route>
 
-          <Route exact path="/followers">
+          {/* <Route exact path="/followers">
 
 <Follow />
-          </Route>
+          </Route> */}
      
 
 
