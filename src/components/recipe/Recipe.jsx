@@ -7,18 +7,18 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/auth";
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import Edit from "../edit/Edit"
 
 
 
 
 
-
-export default function Post({ recipes ,handleDelete, idx}) {
+export default function Post({ recipes ,handleDelete, idx,getid}) {
 
 
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-
+  const [updatpost, setEdit] = React.useState(false);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -27,7 +27,9 @@ export default function Post({ recipes ,handleDelete, idx}) {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
+  const editpost = () => {
+    setEdit(true);
+  };
 
   const [like, setLike] = useState(recipes.likes.length);
   const [isLiked, setIsLiked] = useState(false);
@@ -97,9 +99,13 @@ export default function Post({ recipes ,handleDelete, idx}) {
                  handleDelete(idx);
               }
                 }>Delete</MenuItem>
-              <MenuItem onClick={handleClose}>Edite</MenuItem>
+              <MenuItem onClick={()=>{handleClose();editpost()}}>Edit</MenuItem>
              
             </Menu>
+            {
+              updatpost &&
+              <Edit idx={idx} recipes={recipes} getid={getid}/>
+            }
           </div>
         </div>
         <div className="postCenter">

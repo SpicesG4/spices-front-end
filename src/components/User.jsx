@@ -28,7 +28,7 @@ function Auth(props) {
           </Unless>
           <When condition={user?.verified}>
             {/* <Home /> */}
-<ChefRecipes/>
+{/* <ChefRecipes/> */}
           </When>
         </Then>
         <Else>
