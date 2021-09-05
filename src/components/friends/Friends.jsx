@@ -13,6 +13,7 @@ import { Add, Remove } from "@material-ui/icons";
 function Friends({user}) {
 
     const [friends, setFriends] = useState([]);
+  
     const auth = useContext(AuthContext);
 
     // console.log(user._id, token, "from Friends")
@@ -37,6 +38,24 @@ function Friends({user}) {
         };
         getFriends();
     }, [auth.user]);
+
+    // useEffect(() => {
+    //     console.log(user ,"user mo auth from friends")
+
+    //     const getChef = async () => {
+    //         try {
+    //             const chefList = await axios.get("https://spice-g4.herokuapp.com/list-chef" , {
+    //                 headers: {
+    //                   Authorization: auth.token}
+    //                 });
+    //                 setChef(chefList.data);
+    //             console.log(chefList)
+    //         } catch (err) {
+    //             console.log(err);
+    //         }
+    //     };
+    //     getChef();
+    // }, [auth.user]);
 
     // const handleClick = async () => {
     //     try {
@@ -67,14 +86,14 @@ function Friends({user}) {
     //             <div className="birthdayContainer">
     //                 <img className="birthdayImg" src="assets/gift.png" alt="" />
     //                 <span className="birthdayText">
-    //                     <b>Pola Foster</b> and <b>3 other friends</b> have a birhday today.
+    //                     <b>Suggested Chefs</b>
     //                 </span>
     //             </div>
     //             <img className="rightbarAd" src="assets/ad.png" alt="" />
     //             <h4 className="rightbarTitle">Online Friends</h4>
     //             <ul className="rightbarFriendList">
-    //                 {Users.map((u) => (
-    //                     <Online key={u.id} user={u} />
+    //                 {chef.map((u) => (
+    //                     <li  > {u.username} </li>
     //                 ))}
     //             </ul>
     //         </>
@@ -138,10 +157,11 @@ function Friends({user}) {
     };
     return (
         <div className="rightbar">
-            <div className="rightbarWrapper">
-                <ProfileRightbar />
-            </div>
-        </div>
+      <div className="rightbarWrapper">
+       
+       <ProfileRightbar />
+      </div>
+    </div>
     );
 }
 

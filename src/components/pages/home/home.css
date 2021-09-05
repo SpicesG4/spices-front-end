@@ -1,0 +1,8 @@
+.homeContainer{
+  display: flex;
+  width: 100%;
+}
+
+.rightbarWrapper {
+  padding: 20px 20px 0 0;
+}

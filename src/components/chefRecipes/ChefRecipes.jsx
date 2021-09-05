@@ -4,7 +4,7 @@ import Recipe from "../recipe/Recipe";
 import axios from "axios";
 import { AuthContext } from "../../context/auth";
 import Share from "../share/Share";
-
+import "./chefRecipes.css"
 
 export default function ChefRecipes({ username }) {
   const [recipes, setRecipes] = useState([]);

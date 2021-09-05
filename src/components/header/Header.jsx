@@ -14,11 +14,17 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import ListIcon from '@material-ui/icons/List';
+
 
 import { AuthContext } from '../../context/auth';
 import { useContext } from 'react';
 import { Link } from "react-router-dom";
-import Profile from "../pages/profile/Profile"
+import Profile from "../pages/profile/Profile";
+import HomeIcon from '@material-ui/icons/Home';
+import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
+import PolicyIcon from '@material-ui/icons/Policy';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -122,12 +128,28 @@ export default function PrimarySearchAppBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-      <Link to="/profile" style={{ textDecoration: "none" }}>
-           profile
+      {/* <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      <MenuItem onClick={handleMenuClose}>My account</MenuItem> */}
+      <MenuItem onClick={handleMenuClose}>
+        <Link to="/home" style={{ textDecoration: "none" }}>
+          Home  
         </Link>
-
+      </MenuItem>
+      <MenuItem onClick={handleMenuClose}>
+        <Link to="/profile" style={{ textDecoration: "none" }}>
+          profile
+        </Link>
+      </MenuItem>
+      <MenuItem onClick={handleMenuClose}>
+        <Link to="/" style={{ textDecoration: "none" }}>
+          logout
+        </Link>
+      </MenuItem>
+      {user&&  user.role == "admin" &&<MenuItem onClick={handleMenuClose}>
+        <Link to="/admin" style={{ textDecoration: "none" }}>
+          Admin
+        </Link>
+      </MenuItem>}
     </Menu>
   );
 
@@ -150,14 +172,14 @@ export default function PrimarySearchAppBar() {
         </IconButton>
         <p>Messages</p>
       </MenuItem>
-      <MenuItem>
+      {/* <MenuItem>
         <IconButton aria-label="show 11 new notifications" color="inherit">
           <Badge badgeContent={11} color="secondary">
             <NotificationsIcon />
           </Badge>
         </IconButton>
         <p>Notifications</p>
-      </MenuItem>
+      </MenuItem> */}
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
           aria-label="account of current user"
@@ -165,7 +187,7 @@ export default function PrimarySearchAppBar() {
           aria-haspopup="true"
           color="inherit"
         >
-          <AccountCircle />
+          <ListIcon />
         </IconButton>
         <p>Profile</p>
       </MenuItem>
@@ -176,49 +198,57 @@ export default function PrimarySearchAppBar() {
     <div className={classes.grow}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
+          {/* <IconButton
             edge="start"
             className={classes.menuButton}
             color="inherit"
             aria-label="open drawer"
           >
             <MenuIcon />
-          </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
-            Material-UI
+          </IconButton> */}
+          <Typography className={classes.title} variant="h6"  noWrap>
+          <Link to="/" style={{ textDecoration: "none", color:"white"}}>
+          Spices
+          </Link>
           </Typography>
-          <div className={classes.search}>
+          {/* <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
-            </div>
-            <InputBase
+            </div> */}
+            {/* <InputBase
               placeholder="Search…"
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,
               }}
               inputProps={{ 'aria-label': 'search' }}
-            />
+            /> */}
+          {/* </div> */}
+          <div style={{margin:"20px"}}>
+          <HomeIcon />
+          <Link to="/home" style={{ textDecoration: "none", color:"white"}}>
+            Home  
+          </Link>
           </div>
-
-          <Link to="/home" style={{ textDecoration: "none" }}>
-          Home  
-
-             </Link>
-          
-          <Link to="/profile" style={{ textDecoration: "none" }}>
+          <div style={{margin:"20px"}}>
+          <AccountCircle/>
+          <Link to="/profile" style={{ textDecoration: "none",color:"white" }}>
            Profile  
         </Link>
-
-        <Link to="/followers" style={{ textDecoration: "none" }}>
+        </div>
+        <div style={{margin:"20px"}}>
+        <SupervisedUserCircleIcon/>
+        <Link to="/followers" style={{ textDecoration: "none" ,color:"white"}}>
            Followers  
         </Link>
-
-        <Link to="/admin" style={{ textDecoration: "none" }}>
-           Admin panel  
+        </div>
+       {user&& user.role == "admin" &&<div style={{margin:"20px"}}>
+        <PolicyIcon/>
+        <Link to="/admin" style={{ textDecoration: "none",color:"white" }}>
+           Admin
         </Link>
-
-
+        </div>}
+        
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton aria-label="show 4 new mails" color="inherit">
@@ -239,7 +269,7 @@ export default function PrimarySearchAppBar() {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <AccountCircle />
+              <ListIcon />
             </IconButton>
           </div>
           <div className={classes.sectionMobile}>

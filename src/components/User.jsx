@@ -3,7 +3,7 @@ import { AuthContext } from '../context/auth'
 import SignUpForm from './SignUpForm.jsx'
 import SignInForm from './SignInForm.jsx'
 import { If, Else, Then, When, Unless } from 'react-if';
-import Home from '../../src/components/pages/home/Home'
+import Home from '../../src/components/pages/home/Home';
 import ChefRecipes from './chefRecipes/ChefRecipes';
 
 import Friends from "../components/friends/Friends"
@@ -28,7 +28,7 @@ function Auth(props) {
             <SignInForm />
           </Unless>
           <When condition={user?.verified}>
-            {/* <Home /> */}
+            <Home />
 {/* <ChefRecipes/> */}
 
           </When>

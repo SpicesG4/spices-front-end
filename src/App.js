@@ -30,7 +30,7 @@ function App() {
     <>
 
       <Router>
-        <PrimarySearchAppBar />
+     { loggedIn &&  <PrimarySearchAppBar />}
         <Switch>
           <Route exact path="/">
                    <User />
