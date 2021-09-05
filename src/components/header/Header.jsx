@@ -164,14 +164,7 @@ export default function PrimarySearchAppBar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
-        <IconButton aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="secondary">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem>
+   
       {/* <MenuItem>
         <IconButton aria-label="show 11 new notifications" color="inherit">
           <Badge badgeContent={11} color="secondary">
@@ -251,16 +244,15 @@ export default function PrimarySearchAppBar() {
         
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <MailIcon />
-              </Badge>
+                  
+             <Link to="/msg" style={{ textDecoration: "none" }}>
+            <IconButton  aria-label="show 4 new mails" color="inherit">
+              {/* <Badge badgeContent={4} color="secondary"> */}
+             <MailIcon style={{ color:"white" }} /> 
+              {/* </Badge> */}
             </IconButton>
-            <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
+             </Link>
+           
             <IconButton
               edge="end"
               aria-label="account of current user"

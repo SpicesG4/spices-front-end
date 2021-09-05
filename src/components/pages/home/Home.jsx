@@ -6,6 +6,12 @@ import axios from "axios";
 import Chef from '../../chefs/chefs';
 import "./home.css"
 import "../../../components/friends/friends.css"
+import { Link } from "react-router-dom";
+import HomeRecipe from '../../homeRicipe/HomeRecipe';
+
+
+
+
 function Home() {
 
     const [chef, setChef] = useState([]);
@@ -34,6 +40,7 @@ function Home() {
     const HomeRightbar = () => {
         return (
             <>
+
                 <div className="birthdayContainer">
                     <img className="birthdayImg" src="assets/gift.png" alt="" />
                     <span className="birthdayText">
@@ -43,9 +50,12 @@ function Home() {
                 <img className="rightbarAd" src="assets/ad.png" alt="" />
                 <ul className="rightbarFriendList">
                     {chef.map((u) => (
-                        <Chef key={u.id} user={u} />
+                        <Link to={`/profile/${u.username}`} style={{ textDecoration: "none" }}>
+                            <Chef key={u.id} user={u} />
+                        </Link>
                     ))}
                 </ul>
+
             </>
         );
     };
@@ -58,11 +68,11 @@ function Home() {
 
         <div className="homeContainer">
 
-            <ChefRecipes />
+            <HomeRecipe currunt={auth.user} />
             {/* <div className="rightbar"> */}
-                <div className="rightbarWrapper">
-                    <HomeRightbar />
-                </div>
+            <div className="rightbarWrapper">
+                <HomeRightbar />
+            </div>
             {/* </div> */}
         </div>
     )

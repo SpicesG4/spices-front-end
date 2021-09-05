@@ -18,50 +18,54 @@ import Home from "./components/pages/home/Home"
 //Profile
 import Profile from './components/pages/profile/Profile';
 //Follow
-// import Follow from "./components/pages/follow/Follow"
+import Follow from "./components/pages/follow/Follow"
+import Messenger from './components/messenger/Messenger'
 
 //Admin
 import Admin from "./components/pages/admin/Admin"
 
 function App() {
-  
+
   const { loggedIn, user, verified } = useContext(AuthContext);
   return (
     <>
 
       <Router>
-     { loggedIn &&  <PrimarySearchAppBar />}
+        {loggedIn && <PrimarySearchAppBar />}
         <Switch>
           <Route exact path="/">
-                   <User />
+            <User />
           </Route>
 
 
           <Route exact path="/home">
-<Home/>
+            <Home />
           </Route>
 
-{/* //Make it dynamic */}
+          {/* //Make it dynamic */}
           <Route exact path="/profile">
-                   <Profile/>
+            <Profile />
           </Route>
           <Route exact path="/profile/:username">
-                   <Profile/>
+            <Profile />
+          </Route>
+          <Route exact path="/msg">
+            <Messenger />
           </Route>
 
-          {/* <Route exact path="/followers">
+          <Route exact path="/followers">
 
-<Follow />
-          </Route> */}
-     
+            <Follow />
+          </Route>
 
 
-{/* user.role=="chef &&"  this should be added to avoid accesss*/}
+
+          {/* user.role=="chef &&"  this should be added to avoid accesss*/}
           <Route exact path="/admin">
 
-<Admin />
+            <Admin />
           </Route>
-        
+
         </Switch>
       </Router>
     </>
