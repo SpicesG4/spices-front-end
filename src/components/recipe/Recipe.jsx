@@ -13,7 +13,7 @@ import Edit from "../edit/Edit"
 
 
 
-export default function Post({ recipes ,handleDelete, idx,getid}) {
+export default function Post({ recipes ,handleDelete, idx,getid ,username}) {
 
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -85,7 +85,7 @@ export default function Post({ recipes ,handleDelete, idx,getid}) {
             <span className="postDate">{format(recipes.createdAt)}</span>
           </div>
           <div className="postTopRight">
-            <MoreVert onClick={handleClick} />
+          { username == currentUser.username && <MoreVert onClick={handleClick}  /> }
 
             <Menu
               id="simple-menu"
