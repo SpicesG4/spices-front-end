@@ -1,5 +1,7 @@
 import React, { Component, useState, useEffect } from 'react';
 import cookie from 'react-cookies';
+import axios from "axios";
+
 import jwt from 'jsonwebtoken';
 import superagent from 'superagent';
 import base64 from 'base-64';
@@ -17,10 +19,9 @@ function Auth(props) {
 
   let setLoginState = (loggedIn, token, user) => {
     cookie.save('auth', token);
-    setUser(user?.username);
+    setUser(user);
     setLoggedIn(loggedIn);
     setToken(token);
-
   };
 
 
@@ -29,8 +30,15 @@ function Auth(props) {
       const res = await superagent.post(`${API}/signin`).set('authorization', `Basic ${base64.encode(`${username}:${password}`)}`)
       cookie.save('auth', res.body.token);
       validateToken(res.body.token);
-      setUser(res.body.user)
-    } catch (error) {
+     await  setUser(res.body.user)
+
+
+      fetchUser()
+    }
+    
+    
+    
+    catch (error) {
       console.log('LOGIN ERROR', error.message);
     }
   };
@@ -63,7 +71,7 @@ function Auth(props) {
   let validateToken = (token) => {
     if (token !== 'null') {
       const user = jwt.decode(token);
-      setLoginState(true, token, user);
+      setLoginState(true, token, user.username);
     } else {
       setLoginState(false, null, {});
     }
@@ -84,13 +92,19 @@ function Auth(props) {
   useEffect(() => {
     const token = cookie.load('auth');
     validateToken(token);
+    console.log(user,"user")
   }, [loggedIn])
 
 
+  async function fetchUser(){
+   const user= await axios.get(`http://localhost:3001/users?userId=${user._id}`,{
+      }) 
+    setUser(user)
+    }
   return (
     <div>
       <AuthContext.Provider
-        value={{ loggedIn, setLoggedIn, user, setUser, validateToken, logout, login, setLoginState, signup, token }}
+        value={{ loggedIn, setLoggedIn, user, setUser, validateToken, logout, login, setLoginState, signup, token,fetchUser }}
       >
         {props.children}
       </AuthContext.Provider>
