@@ -18,14 +18,14 @@ function Friends({user}) {
     // console.log(user._id, token, "from Friends")
     
     console.log(auth.user ,"user from friends")
-    const [followed, setFollowed] = useState(auth.user.followings.includes(user._id));
+    // const [followed, setFollowed] = useState(auth.user.followings.includes(user._id));
     // const [followings,setFollowings]=useState(currentUser.followings)
     useEffect(() => {
         console.log(user ,"user mo auth from friends")
 
         const getFriends = async () => {
             try {
-                const friendList = await axios.get("http://localhost:3001/getFriends/" + user._id, {
+                const friendList = await axios.get("https://spice-g4.herokuapp.com/getFriends/" + user._id, {
                     headers: {
                       Authorization: auth.token}
                     });
@@ -38,28 +38,28 @@ function Friends({user}) {
         getFriends();
     }, [auth.user]);
 
-    const handleClick = async () => {
-        try {
-            if (followed) {
-              const data =await axios.put(`http://localhost:3001/unfollow/${user._id}`, { userId: auth.user._id }, {
-                    headers: {
-                      Authorization: 'Bearer ' + auth.token 
-                    }
-                });
-                console.log(data,"data")
-            //  dispatch({ type: "UNFOLLOW", payload: user._id });
-            } else {
-                await axios.put(`http://localhost:3001/follow/${user._id}`, { userId: auth.user._id }, {
-                    headers: {
-                      Authorization: 'Bearer ' + auth.token 
-                    }
-                });
-                // dispatch({ type: "FOLLOW", payload: user._id });
-            }
-            setFollowed(!followed);
-        } catch (err) {
-        }
-    };
+    // const handleClick = async () => {
+    //     try {
+    //         if (followed) {
+    //           const data =await axios.put(`http://localhost:3001/unfollow/${user._id}`, { userId: auth.user._id }, {
+    //                 headers: {
+    //                   Authorization: 'Bearer ' + auth.token 
+    //                 }
+    //             });
+    //             console.log(data,"data")
+    //         //  dispatch({ type: "UNFOLLOW", payload: user._id });
+    //         } else {
+    //             await axios.put(`http://localhost:3001/follow/${user._id}`, { userId: auth.user._id }, {
+    //                 headers: {
+    //                   Authorization: 'Bearer ' + auth.token 
+    //                 }
+    //             });
+    //             // dispatch({ type: "FOLLOW", payload: user._id });
+    //         }
+    //         setFollowed(!followed);
+    //     } catch (err) {
+    //     }
+    // };
 
     // const HomeRightbar = () => {
     //     return (
@@ -84,12 +84,12 @@ function Friends({user}) {
     const ProfileRightbar = () => {
         return (
             <>
-                {user.username !== auth.user.username && (
+                {/* {user.username !== auth.user.username && (
                     <button className="rightbarFollowButton" onClick={handleClick}>
                         {followed ? "Unfollow" : "Follow"}
                         {followed ? <Remove /> : <Add />}
                     </button>
-                )}
+                )} */}
                 <h4 className="rightbarTitle">User information</h4>
                 <div className="rightbarInfo">
                     <div className="rightbarInfoItem">

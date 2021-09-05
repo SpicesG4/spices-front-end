@@ -2,7 +2,7 @@ import React from 'react'
 
 
 import "./profile.css";
-import Sidebar from "./sidebar/Sidebar";
+// import Sidebar from "./sidebar/Sidebar";
 import ChefRecipes from "../../chefRecipes/ChefRecipes";
 import Friends from "../../friends/Friends";
 import {useContext, useEffect, useState } from "react";
@@ -36,7 +36,7 @@ const [currentUser, setCurrentUser] = useState(user);
   return (
     <>
       <div className="profile">
-        <Sidebar />
+        {/* <Sidebar /> */}
         <div className="profileRight">
           <div className="profileRightTop">
             <div className="profileCover">
