@@ -34,7 +34,7 @@ export default function Edit({idx,recipes,getid}) {
       newPost.img = fileName;
       // console.log(newPost);
       try {
-        await axios.post("http://localhost:3001/upload", data, {
+        await axios.post("https://spice-g4.herokuapp.com/upload", data, {
           headers: {
             Authorization: token
           }
@@ -43,7 +43,7 @@ export default function Edit({idx,recipes,getid}) {
     }
     getid(idx)
     try {
-      await axios.put("http://localhost:3001/updatefood/"+recipes._id, newPost, {
+      await axios.put("https://spice-g4.herokuapp.com/updatefood/"+recipes._id, newPost, {
         headers: {
           Authorization: token
         }
@@ -95,18 +95,18 @@ export default function Edit({idx,recipes,getid}) {
                     onChange={(e) => setFile(e.target.files[0])}
                   />
                 </label>
-                <div className="shareOption">
+                {/* <div className="shareOption">
                   <Label htmlColor="blue" className="shareIcon" />
                   <span className="shareOptionText">Tag</span>
-                </div>
-                <div className="shareOption">
+                </div> */}
+                {/* <div className="shareOption">
                   <Room htmlColor="green" className="shareIcon" />
                   <span className="shareOptionText">Location</span>
-                </div>
-                <div className="shareOption">
+                </div> */}
+                {/* <div className="shareOption">
                   <EmojiEmotions htmlColor="goldenrod" className="shareIcon" />
                   <span className="shareOptionText">Feelings</span>
-                </div>
+                </div> */}
               </div>
               <button className="shareButton" type="submit">
                 Share

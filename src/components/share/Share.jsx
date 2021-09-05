@@ -30,7 +30,7 @@ export default function Share() {
       newPost.img = fileName;
       // console.log(newPost);
       try {
-        await axios.post("http://localhost:3001/upload", data, {
+        await axios.post("https://spice-g4.herokuapp.com/upload", data, {
           headers: {
             Authorization: token
           }
@@ -38,7 +38,7 @@ export default function Share() {
       } catch (err) { }
     }
     try {
-      await axios.post("http://localhost:3001/addfood", newPost, {
+      await axios.post("https://spice-g4.herokuapp.com/addfood", newPost, {
         headers: {
           Authorization: token
         }
@@ -90,18 +90,18 @@ export default function Share() {
                     onChange={(e) => setFile(e.target.files[0])}
                   />
                 </label>
-                <div className="shareOption">
+                {/* <div className="shareOption">
                   <Label htmlColor="blue" className="shareIcon" />
                   <span className="shareOptionText">Tag</span>
-                </div>
-                <div className="shareOption">
+                </div> */}
+                {/* <div className="shareOption">
                   <Room htmlColor="green" className="shareIcon" />
                   <span className="shareOptionText">Location</span>
-                </div>
-                <div className="shareOption">
+                </div> */}
+                {/* <div className="shareOption">
                   <EmojiEmotions htmlColor="goldenrod" className="shareIcon" />
                   <span className="shareOptionText">Feelings</span>
-                </div>
+                </div> */}
               </div>
               <button className="shareButton" type="submit">
                 Share

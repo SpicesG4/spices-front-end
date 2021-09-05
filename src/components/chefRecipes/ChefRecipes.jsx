@@ -14,8 +14,8 @@ export default function ChefRecipes({ username }) {
   const fetchRecipes = async () => {
     console.log(user);
     const res = user.username
-      ? await axios.get("http://localhost:3001/profile/" + user.username)
-      : await axios.get("http://localhost:3001/getallfood/" + user._id);
+      ? await axios.get("https://spice-g4.herokuapp.com/profile/" + user.username)
+      : await axios.get("https://spice-g4.herokuapp.com/getallfood/" + user._id);
       // console.log(res.data)
     setRecipes(
       res.data.sort((p1, p2) => {
@@ -34,7 +34,7 @@ export default function ChefRecipes({ username }) {
 
   const handleDelete = async (i) => {
     // console.log(recipes)
-    const data = await axios.delete("http://localhost:3001/deletefood/" + recipes[i]._id, {
+    const data = await axios.delete("https://spice-g4.herokuapp.com/deletefood/" + recipes[i]._id, {
       headers: {
         Authorization: token
       },
