@@ -20,13 +20,14 @@ function Auth(props) {
     setUser(user?.username);
     setLoggedIn(loggedIn);
     setToken(token);
-    
+
   };
 
 
   let login = async (username, password) => {
     try {
       const res = await superagent.post(`${API}/signin`).set('authorization', `Basic ${base64.encode(`${username}:${password}`)}`)
+      cookie.save('auth', res.body.token);
       validateToken(res.body.token);
       setUser(res.body.user)
     } catch (error) {
@@ -34,13 +35,26 @@ function Auth(props) {
     }
   };
 
+  function deleteAllCookies() {
+    var cookies = document.cookie.split(";");
+
+    for (var i = 0; i < cookies.length; i++) {
+      var cookie = cookies[i];
+      var eqPos = cookie.indexOf("=");
+      var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+      document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    }
+  }
 
 
   let logout = () => {
+    deleteAllCookies()
+
     setLoginState(false, null, {});
     // cookie.remove("auth");
     setLoggedIn(false)
     setUser(false)
+
     window.location.reload();
   };
 
@@ -76,7 +90,7 @@ function Auth(props) {
   return (
     <div>
       <AuthContext.Provider
-        value={{ loggedIn, setLoggedIn, user, setUser, validateToken, logout, login, setLoginState, signup ,token}}
+        value={{ loggedIn, setLoggedIn, user, setUser, validateToken, logout, login, setLoginState, signup, token }}
       >
         {props.children}
       </AuthContext.Provider>
