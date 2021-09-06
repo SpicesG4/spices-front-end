@@ -95,15 +95,14 @@ function Auth(props) {
   }, [loggedIn])
 
 
-  // async function fetchUser(){
-  //  const user= await axios.get(`http://localhost:3001/users?userId=${user._id}`,{
-  //     }) 
-  //   setUser(user)
-  //   }
+  async function fetchUser(){
+   const userss= await axios.get(`http://localhost:3001/users`,{ params: { userId: user._id } }) 
+    setUser(userss.data)
+    }
   return (
     <div>
       <AuthContext.Provider
-        value={{ loggedIn, setLoggedIn, user, setUser, validateToken, logout, login, setLoginState, signup, token }}
+        value={{ loggedIn, setLoggedIn, user, setUser, validateToken, logout, login, setLoginState, signup, token ,fetchUser}}
       >
         {props.children}
       </AuthContext.Provider>
