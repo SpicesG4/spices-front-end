@@ -15,11 +15,12 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import ListIcon from '@material-ui/icons/List';
-
+import SignInForm from '../../components/SignInForm'
+import User from '../../components/User'
 
 import { AuthContext } from '../../context/auth';
 import { useContext } from 'react';
-import { Link } from "react-router-dom";
+import { Link,Redirect } from "react-router-dom";
 import Profile from "../pages/profile/Profile";
 import HomeIcon from '@material-ui/icons/Home';
 import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
@@ -141,9 +142,13 @@ export default function PrimarySearchAppBar() {
         </Link>
       </MenuItem>
       <MenuItem onClick={handleMenuClose}>
-        <Link to="/" style={{ textDecoration: "none" }}>
+
+<a href="/" style={{ textDecoration: "none" }}>
+
           logout
-        </Link>
+          <User />
+          
+</a>
       </MenuItem>
       {user&&  user.role == "admin" &&<MenuItem onClick={handleMenuClose}>
         <Link to="/admin" style={{ textDecoration: "none" }}>

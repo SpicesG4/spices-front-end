@@ -28,7 +28,7 @@ function Auth(props) {
             <SignInForm />
           </Unless>
           <When condition={user?.verified}>
-            <Home />
+            {/* <Home /> */}
 {/* <ChefRecipes/> */}
 
           </When>

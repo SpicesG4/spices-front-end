@@ -20,9 +20,6 @@ function Follow() {
         }
       })
       UpdateAllchefs(allchefs.data)
-
-    
-   
   }, [])
   async function follow(id) {
     console.log("id",id , "user ID"+user._id)
