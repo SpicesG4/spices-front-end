@@ -1,6 +1,7 @@
 .homeContainer{
   display: flex;
   width: 100%;
+  color:black;
 }
 
 .rightbarWrapper {

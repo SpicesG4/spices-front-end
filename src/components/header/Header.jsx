@@ -25,6 +25,7 @@ import Profile from "../pages/profile/Profile";
 import HomeIcon from '@material-ui/icons/Home';
 import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
 import PolicyIcon from '@material-ui/icons/Policy';
+import Signin from '../signin/Signin';
 
 
 
@@ -145,8 +146,8 @@ export default function PrimarySearchAppBar() {
 
 <a href="/" style={{ textDecoration: "none" }}>
 
-          logout
-          <User />
+        <p onClick={logout} >logout</p>  
+          <Signin />
           
 </a>
       </MenuItem>
@@ -178,6 +179,7 @@ export default function PrimarySearchAppBar() {
         </IconButton>
         <p>Notifications</p>
       </MenuItem> */}
+
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
           aria-label="account of current user"
@@ -196,6 +198,7 @@ export default function PrimarySearchAppBar() {
     <div className={classes.grow}>
       <AppBar position="static">
         <Toolbar>
+
           {/* <IconButton
             edge="start"
             className={classes.menuButton}
@@ -204,11 +207,13 @@ export default function PrimarySearchAppBar() {
           >
             <MenuIcon />
           </IconButton> */}
+
           <Typography className={classes.title} variant="h6"  noWrap>
           <Link to="/" style={{ textDecoration: "none", color:"white"}}>
           Spices
           </Link>
           </Typography>
+
           {/* <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />

@@ -20,9 +20,12 @@ export default function Messenger() {
   const { user,fetchUser } = useContext(AuthContext);
   const scrollRef = useRef();
 
+
+
+  
   useEffect(() => {
     
-    socket.current = io("https://soccket.herokuapp.com");
+    socket.current = io("http://localhost:8900");
     socket.current.on("getMessage", (data) => {
       setArrivalMessage({
         sender: data.senderId,
@@ -33,6 +36,9 @@ export default function Messenger() {
 
     console.log("user",user)
   }, []);
+
+
+
 
   useEffect(() => {
     arrivalMessage &&
@@ -52,7 +58,7 @@ export default function Messenger() {
   useEffect(() => {
     const getConversations = async () => {
       try {
-        const res = await axios.get("http://localhost:3001/conversations/" + user._id);
+        const res = await axios.get("https://spice-g4.herokuapp.com/conversations/" + user._id);
         setConversations(res.data);
 
         console.log(res.data,"data")
@@ -72,7 +78,7 @@ export default function Messenger() {
   useEffect(() => {
     const getMessages = async () => {
       try {
-        const res = await axios.get("http://localhost:3001/messages/" + currentChat?._id);
+        const res = await axios.get("https://spice-g4.herokuapp.com/messages/" + currentChat?._id);
         setMessages(res.data);
       } catch (err) {
         console.log(err);
@@ -104,7 +110,7 @@ export default function Messenger() {
     });
 
     try {
-      const res = await axios.post("http://localhost:3001/messages", message);
+      const res = await axios.post("https://spice-g4.herokuapp.com/messages", message);
       setMessages([...messages, res.data]);
       setNewMessage("");
     } catch (err) {

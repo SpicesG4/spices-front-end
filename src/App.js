@@ -23,19 +23,46 @@ import Messenger from './components/messenger/Messenger'
 
 //Admin
 import Admin from "./components/pages/admin/Admin"
+import Signin from './components/signin/Signin';
+import Rigester from './components/register/Signup';
+
+
+import { createTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/core';
+// import { SnackbarProvider } from 'notistack';
+import Collapse from '@material-ui/core/Collapse';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      // light: '#757ce8',
+      main: '#e67300',
+      // dark: '#002884',
+      contrastText: '#fff',
+    },
+    secondary: {
+      // light: '#ff7961',
+      main: 'rgb(20, 31, 31)',
+      // dark: '#ba000d',
+      // contrastText: '#000',
+    },
+  },
+});
+
 
 function App() {
 
   const { loggedIn, user, verified } = useContext(AuthContext);
   return (
     <>
-
+      {/* <Rigester /> */}
+      <ThemeProvider theme={theme}>
       <Router>
         {loggedIn && <PrimarySearchAppBar />}
         <Switch>
           <Route exact path="/">
-          {!loggedIn &&  <User />}
-          {loggedIn &&   <Home />}
+            {!loggedIn && <User />}
+            {loggedIn && <Home />}
 
           </Route>
 
@@ -47,7 +74,7 @@ function App() {
           {/* //Make it dynamic */}
           <Route exact path="/profile">
             <Profile />
-            
+
           </Route>
           <Route exact path="/profile/:username">
             <Profile />
@@ -61,8 +88,15 @@ function App() {
             <Follow />
           </Route>
 
+          <Route exact path="/signin">
 
+            <Signin />
+          </Route>
 
+          <Route exact path="/signup">
+
+            <Rigester />
+          </Route>
           {/* user.role=="chef &&"  this should be added to avoid accesss*/}
           <Route exact path="/admin">
 
@@ -71,6 +105,7 @@ function App() {
 
         </Switch>
       </Router>
+      </ThemeProvider>
     </>
   );
 }

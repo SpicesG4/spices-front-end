@@ -7,6 +7,8 @@ import Home from '../../src/components/pages/home/Home';
 import ChefRecipes from './chefRecipes/ChefRecipes';
 
 import Friends from "../components/friends/Friends"
+import Rigester from './register/Signup';
+import Signin from './signin/Signin';
 
 
 
@@ -19,13 +21,15 @@ function Auth(props) {
   // let okToRender = loggedIn  false;
   return (
     <div>
-      <SignInForm />
+      {/* <SignInForm /> */}
+      <Signin />
       <If condition={loggedIn}>
 
         <Then>
           <Unless condition={user?.verified}>
             you need to virfy your email
-            <SignInForm />
+            {/* <SignInForm /> */}
+            <Signin />
           </Unless>
           <When condition={user?.verified}>
             {/* <Home /> */}
@@ -35,9 +39,9 @@ function Auth(props) {
         </Then>
         <Else>
           <div style={{ textAlign: 'center', marginTop: '100px' }}>
-            <SignUpForm />
-            <p>You need to Signup / Signin </p>
-            {/* <Signup /> */}
+            {/* <Rigester /> */}
+          
+            {/* <Signin /> */}
 
           </div>
         </Else>
