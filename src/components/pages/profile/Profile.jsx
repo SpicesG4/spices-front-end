@@ -67,7 +67,7 @@ const [currentUser, setCurrentUser] = useState(user);
           <div className="profileRightBottom">
           {username?<ChefRecipes username={username} />:<ChefRecipes username={user.username} />}
         {/* { username == user.username &&    <Friends  user={user}/>} */}
-        {/* <Friends  user={user}/> */}
+        <Friends  user={currentUser}/>
           </div>
         </div>
       </div>
