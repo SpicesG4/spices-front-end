@@ -17,61 +17,55 @@ function Friends({ user }) {
   const auth = useContext(AuthContext);
   // console.log(user._id, token, "from Friends")
 
-  console.log(user, "user from friends")
-  console.log(auth.user, "auth from friends")
-  console.log(friends);
+  // console.log(user, "user from friends")
+  // console.log(auth.user, "auth from friends")
+  // console.log(friends);
   const [followed, setFollowed] = useState(
-    auth.user.followings?.includes(user._id)
+    user.followings?.includes(auth.user._id)
   );
   // const [followings,setFollowings]=useState(currentUser.followings)
   useEffect(() => {
-    console.log(auth.user._id)
-    console.log(user, "use effect from friends")
-    console.log(user.token, "kkkkkkkkkkkkkkkkkkkkk")
+    // console.log(auth.user._id)
+    // console.log(user, "use effect from friends")
+    // console.log(auth.token, "kkkkkkkkkkkkkkkkkkkkk")
     const getFriends = async () => {
 
       try {
         const friendList = await axios.get("http://localhost:3001/getFriends/"+user._id);
 
         setFriends(friendList.data);
-        console.log(friendList)
+        // console.log(user.followings?.includes(auth.user._id),user.followings,auth.user._id)
+        setFollowed(user.followers?.includes(auth.user._id))
+        // console.log(friendList)
       } catch (err) {
-        console.log(err);
+        console.log(err.message);
       }
     };
 
     getFriends();
-    console.log(friends);
+    // console.log(friends);
   }, [user]);
 
 
 
   const handleClick = async () => {
     try {
-      console.log(auth.token)
+      // console.log(auth.token)
       if (followed) {
-        const friendList = await axios.put(`http://localhost:3001/unfollow/${user._id}`, { userId: auth.user._id }, {
-          headers: {
-            Authorization:auth.token
-          }
-        });
+        console.log(user._id)
+        const friendList = await axios.put(`http://localhost:3001/unfollow/${user._id}`, { userId: auth.user._id });
 
- 
-
+        setFriends(friendList.data);
+         setFollowed(false)
         
-        setFriends(friendList.data);
-        //  dispatch({ type: "UNFOLLOW", payload: user._id });
       } else {
-        const friendList = await axios.put(`http://localhost:3001/follow/${user._id}`, { userId: auth.user._id }, {
-          headers: {
-            Authorization:auth.token
-          }
-        });
-        // dispatch({ type: "FOLLOW", payload: user._id });
+        const friendList = await axios.put(`http://localhost:3001/follow/${user._id}`, { userId: auth.user._id });
+      
         setFriends(friendList.data);
-      }
+         setFollowed(true)
+       
 
-      setFollowed(!followed);
+      }
     } catch (err) {
     }
   };

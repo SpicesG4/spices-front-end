@@ -17,7 +17,7 @@ const [currentUser, setCurrentUser] = useState(user);
   const username = useParams().username;
   
   useEffect(() => {
-      console.log("from profile user,token",username)
+      // console.log("from profile user,token",username)
     const fetchUser = async () => {
     
       const res =username? await axios.get(`http://localhost:3001/users?username=${username}`,{
@@ -28,7 +28,7 @@ const [currentUser, setCurrentUser] = useState(user);
               Authorization: token}
             })
         setCurrentUser(res.data)
-    console.log(res.data,"res.data from profile")
+    // console.log(res.data,"res.data from profile")
 };
     fetchUser();
   }, [username]);

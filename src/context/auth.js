@@ -18,7 +18,7 @@ function Auth(props) {
   const [token, setToken] = useState("")
 
   let setLoginState = (loggedIn, token, user) => {
-    cookie.save('auth', token);
+    cookie.save('auth', token,{path:"/"});
     setUser(user);
     setLoggedIn(loggedIn);
     setToken(token);
