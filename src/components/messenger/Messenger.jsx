@@ -22,7 +22,7 @@ export default function Messenger() {
 
   useEffect(() => {
     
-    socket.current = io("ws://localhost:8900");
+    socket.current = io("https://soccket.herokuapp.com");
     socket.current.on("getMessage", (data) => {
       setArrivalMessage({
         sender: data.senderId,
