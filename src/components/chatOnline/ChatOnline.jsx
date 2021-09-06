@@ -11,7 +11,7 @@ export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
 
   useEffect(() => {
     const getFriends = async () => {
-      // const res = await axios.get("http://localhost:3001/users/friends/" + currentId);
+      // const res = await axios.get("https://spice-g4.herokuapp.com/users/friends/" + currentId);
       setFriends(user.followers);
 
       console.log("followers",onlineFriends)
@@ -33,7 +33,7 @@ export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
       receiverId:receiver
     }
     try {
-      const res = await axios.post("http://localhost:3001/conversations/",body);
+      const res = await axios.post("https://spice-g4.herokuapp.com/conversations/",body);
     } catch (err) {
       console.log(err);
     }
@@ -45,7 +45,7 @@ export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
     await postConversations(reciveruser)
     try {
       const res = await axios.get(
-        `http://localhost:3001/find/${currentId}/${reciveruser}`
+        `https://spice-g4.herokuapp.com/find/${currentId}/${reciveruser}`
       );
       setCurrentChat(res.data);
     } catch (err) {
@@ -55,7 +55,7 @@ export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
 
   return (
     <div className="chatOnline">
-      {user.followers.map((o) => (
+      {user.followers?.map((o) => (
         <div className="chatOnlineFriend" onClick={() => handleClick(o)}>
           <div className="chatOnlineImgContainer">
             <img
