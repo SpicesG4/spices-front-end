@@ -18,7 +18,7 @@ function Auth(props) {
   const [token, setToken] = useState("")
 
   let setLoginState = (loggedIn, token, user) => {
-    cookie.save('auth', token);
+    cookie.save('auth', token,{path:"/"});
     setUser(user);
     setLoggedIn(loggedIn);
     setToken(token);
@@ -77,10 +77,10 @@ function Auth(props) {
   };
 
 
-  const signup = async (username, password, role, email) => {
+  const signup = async (username, password, role, email,profilePicture,coverPicture) => {
     try {
       const response = await superagent
-        .post(`${API}/signup`, { username, password, role, email });
+        .post(`${API}/signup`, { username, password, role, email,profilePicture,coverPicture});
       validateToken(response.body.token);
     } catch (e) {
       console.error('Signup Error', e.message);

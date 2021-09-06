@@ -15,7 +15,8 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import ListIcon from '@material-ui/icons/List';
-
+import SignInForm from '../../components/SignInForm'
+import User from '../../components/User'
 
 import { AuthContext } from '../../context/auth';
 import { useContext } from 'react';
@@ -141,9 +142,11 @@ export default function PrimarySearchAppBar() {
         </Link>
       </MenuItem>
       <MenuItem onClick={handleMenuClose}>
-        <Link to="/" style={{ textDecoration: "none" }}>
+      <Link to="/" style={{ textDecoration: "none" }}>
+
           logout
-        </Link>
+          <User />
+</Link>
       </MenuItem>
       {user&&  user.role == "admin" &&<MenuItem onClick={handleMenuClose}>
         <Link to="/admin" style={{ textDecoration: "none" }}>

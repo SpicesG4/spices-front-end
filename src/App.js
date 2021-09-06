@@ -34,7 +34,9 @@ function App() {
         {loggedIn && <PrimarySearchAppBar />}
         <Switch>
           <Route exact path="/">
-            <User />
+          {!loggedIn &&  <User />}
+          {loggedIn &&   <Home />}
+
           </Route>
 
 
@@ -45,6 +47,7 @@ function App() {
           {/* //Make it dynamic */}
           <Route exact path="/profile">
             <Profile />
+            
           </Route>
           <Route exact path="/profile/:username">
             <Profile />

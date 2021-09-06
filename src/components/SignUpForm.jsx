@@ -11,6 +11,8 @@ function Signup(props) {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [role, setRole] = useState('user');
+  const [IMG, setIMG] = useState('');
+  const [coverPicture, setcoverPicture] = useState('');
 
   const handleChange = (e) => {
     if (e.target.name === 'username') {
@@ -24,6 +26,17 @@ function Signup(props) {
       setEmail(e.target.value);
     }
 
+       if (e.target.name === 'IMG') {
+      // console.log(e.target.value);
+      setIMG(e.target.value);
+    } 
+
+    if (e.target.name === 'coverPicture') {
+      // console.log(e.target.value);
+      setcoverPicture(e.target.value);
+    } 
+
+
     else {
       // console.log(e.target.value);
       setRole(e.target.value);
@@ -32,7 +45,7 @@ function Signup(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    signup(username, password, role, email);
+    signup(username, password, role, email,IMG,coverPicture);
   };
 
   return (
@@ -80,6 +93,31 @@ function Signup(props) {
               required
               type="password"
               placeholder="Password"
+            />
+          </FormGroup>
+
+
+          <FormGroup controlId="formBasicPassword" intent="danger">
+            <Label intent="danger">IMG URL</Label>
+            <InputGroup
+              intent="danger"
+              onChange={handleChange}
+              name="IMG"
+              required
+              placeholder="IMG URL "
+            />
+          </FormGroup>
+
+
+
+          <FormGroup controlId="formBasicPassword" intent="danger">
+            <Label intent="danger">coverPicture url</Label>
+            <InputGroup
+              intent="danger"
+              onChange={handleChange}
+              name="coverPicture"
+              required
+              placeholder="coverPicture "
             />
           </FormGroup>
 
