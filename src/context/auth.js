@@ -63,7 +63,7 @@ function Auth(props) {
     setLoggedIn(false)
     setUser(false)
 
-    window.location.reload();
+    // window.location.reload();
   };
 
 

@@ -20,7 +20,7 @@ import User from '../../components/User'
 
 import { AuthContext } from '../../context/auth';
 import { useContext } from 'react';
-import { Link } from "react-router-dom";
+import { Link,Redirect } from "react-router-dom";
 import Profile from "../pages/profile/Profile";
 import HomeIcon from '@material-ui/icons/Home';
 import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
@@ -142,11 +142,13 @@ export default function PrimarySearchAppBar() {
         </Link>
       </MenuItem>
       <MenuItem onClick={handleMenuClose}>
-      <Link to="/" style={{ textDecoration: "none" }}>
+
+<a href="/" style={{ textDecoration: "none" }}>
 
           logout
           <User />
-</Link>
+          
+</a>
       </MenuItem>
       {user&&  user.role == "admin" &&<MenuItem onClick={handleMenuClose}>
         <Link to="/admin" style={{ textDecoration: "none" }}>
