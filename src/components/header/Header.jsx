@@ -26,7 +26,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
 import PolicyIcon from '@material-ui/icons/Policy';
 import Signin from '../signin/Signin';
-
+import logo from "./logo.png"
 
 
 const useStyles = makeStyles((theme) => ({
@@ -207,9 +207,13 @@ export default function PrimarySearchAppBar() {
           >
             <MenuIcon />
           </IconButton> */}
-
-          <Typography className={classes.title} variant="h6"  noWrap style={{marginRight:" 125px ", marginLeft:"40px", fontWeight:"700px"}}>
+          <Typography className={classes.title} variant="h6"  noWrap style={{marginRight:" 0px ", fontWeight:"700px"}}>
           <Link to="/" style={{ textDecoration: "none", color:"white", fontWeight:"650px" }}>
+          <img src={logo} alt="Logo" width="70px" height="60px"/>
+          </Link>
+          </Typography>
+          <Typography className={classes.title} variant="h6"  noWrap style={{marginRight:" 115px ", marginLeft:"0px", fontWeight:"700px"}}>
+          <Link to="/" style={{ textDecoration: "none", color:"black", fontWeight:"750px" }}>
           Spices
           </Link>
           </Typography>

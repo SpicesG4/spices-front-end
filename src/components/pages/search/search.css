@@ -8,15 +8,17 @@
     flex: 9;
 }
 
+
 .searchDiv{
     margin: 40px;
     border-radius:50px;
      background-color:black; 
-     border:"2px solid gray"; background-color:#f2f2f2
+     border:"2px solid gray";
+      background-color:#f2f2f2
 }
 
 .searchInp{
-    width: 85%;
+    width: 90%;
     border-radius:50px;
      background-Color:#f2f2f2;
      margin-left:8px;
@@ -45,5 +47,5 @@
     margin: 5px;
     border-radius:50px;
     border:#d9d9d9;
-    background-color:#d9d9d9 ;
+    background-color:#f2f2f2;
 }
