@@ -4,6 +4,7 @@
   -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
   box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
   margin: 30px 0;
+  background-color: white;
 }
 
 .postWrapper {
@@ -43,7 +44,7 @@
 }
 
 .postImg{
-    margin-top: 20px;
+    margin-top: 15px;
     width: 100%;
     max-height: 500px;
     object-fit: contain;
@@ -71,8 +72,8 @@
     font-size: 15px;
 }
 
-.postCommentText{
+/* .postCommentText{
     cursor: pointer;
     border-bottom: 1px dashed gray;
     font-size: 15px;
-}
+} */

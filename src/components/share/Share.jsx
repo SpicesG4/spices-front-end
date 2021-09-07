@@ -6,6 +6,7 @@ import {
   EmojiEmotions,
   Cancel,
 } from "@material-ui/icons";
+import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
 import { useContext, useRef, useState } from "react";
 import { AuthContext } from "../../context/auth";
 import axios from "axios";
@@ -80,7 +81,7 @@ export default function Share() {
             <form className="shareBottom" onSubmit={submitHandler}>
               <div className="shareOptions">
                 <label htmlFor="file" className="shareOption">
-                  <PermMedia htmlColor="tomato" className="shareIcon" />
+                  <PhotoLibraryIcon htmlColor="rgb(102,102,52)" className="shareIcon" />
                   <span className="shareOptionText">Photo or Video</span>
                   <input
                     style={{ display: "none" }}

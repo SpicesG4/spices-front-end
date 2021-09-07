@@ -25,7 +25,7 @@ import Messenger from './components/messenger/Messenger'
 import Admin from "./components/pages/admin/Admin"
 import Signin from './components/signin/Signin';
 import Rigester from './components/register/Signup';
-
+import Search from './components/pages/search/Search';
 
 import { createTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/core';
@@ -36,7 +36,7 @@ const theme = createTheme({
   palette: {
     primary: {
       // light: '#757ce8',
-      main: '#e67300',
+      main: 'rgb(230, 92, 0)',
       // dark: '#002884',
       contrastText: '#fff',
     },
@@ -71,6 +71,9 @@ function App() {
             <Home />
           </Route>
 
+          <Route exact path="/Search">
+            <Search />
+          </Route>
           {/* //Make it dynamic */}
           <Route exact path="/profile">
             <Profile />

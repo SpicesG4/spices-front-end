@@ -8,7 +8,7 @@ import "./home.css"
 import "../../../components/friends/friends.css"
 import { Link } from "react-router-dom";
 import HomeRecipe from '../../homeRicipe/HomeRecipe';
-
+import Sidebar from "../../../components/sidebar/Sidebar";
 
 
 
@@ -67,7 +67,7 @@ function Home() {
     return (
 
         <div className="homeContainer">
-
+<Sidebar/>
             <HomeRecipe currunt={auth.user} />
             {/* <div className="rightbar"> */}
             <div className="rightbarWrapper">

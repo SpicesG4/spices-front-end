@@ -1,14 +1,13 @@
 import React from 'react'
-
-
 import "./profile.css";
-// import Sidebar from "./sidebar/Sidebar";
 import ChefRecipes from "../../chefRecipes/ChefRecipes";
 import Friends from "../../friends/Friends";
 import {useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
 import { AuthContext } from '../../../context/auth';
+import Sidebar from "../../../components/sidebar/Sidebar";
+
 
 
 function Profile() {
@@ -36,7 +35,7 @@ const [currentUser, setCurrentUser] = useState(user);
   return (
     <>
       <div className="profile">
-        {/* <Sidebar /> */}
+        <Sidebar/>
         <div className="profileRight">
           <div className="profileRightTop">
             <div className="profileCover">
