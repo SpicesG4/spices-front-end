@@ -31,6 +31,7 @@ import { createTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/core';
 // import { SnackbarProvider } from 'notistack';
 import Collapse from '@material-ui/core/Collapse';
+import SocialProfileWithImage from './components/pages/follow/FollowChef';
 
 const theme = createTheme({
   palette: {
@@ -87,8 +88,8 @@ function App() {
           </Route>
 
           <Route exact path="/followers">
-
-            <Follow />
+<SocialProfileWithImage />
+            {/* <Follow /> */}
           </Route>
 
           <Route exact path="/signin">
