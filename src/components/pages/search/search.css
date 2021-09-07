@@ -1,10 +1,11 @@
 
 .bodySearch{
     display: flex;
+    flex:9;
 }
 
 .rightBar{
-    flex: 8;
+    flex: 9;
 }
 
 .searchDiv{

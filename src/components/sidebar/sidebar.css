@@ -5,16 +5,17 @@
     overflow-y: scroll;
     position: sticky;
     top: 1px;
+    background-color: rgb(247, 246, 245);
   }
   
   ::-webkit-scrollbar {
-    width: 5px;
+    width: 4px;
   }
   ::-webkit-scrollbar-track {
-    background-color: rgba(233, 137, 41, 0.747);
+    background-color: rgba(245, 144, 42, 0.596);
   }
   ::-webkit-scrollbar-thumb {
-    background-color:   rgba(233, 137, 41, 0.747) ;
+    background-color:   rgba(184, 79, 10, 0.877) ;
   }
   
   .sidebarWrapper {
