@@ -11,11 +11,20 @@ import { useContext, useRef, useState } from "react";
 import { AuthContext } from "../../context/auth";
 import axios from "axios";
 
+
+
+
+
+
 export default function Share() {
   const { user, token } = useContext(AuthContext);
 
   const description = useRef();
   const [file, setFile] = useState(null);
+
+
+
+
 
   const submitHandler = async (e) => {
     e.preventDefault();
