@@ -122,16 +122,24 @@ export default function Messenger() {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
+  // const choosefriend = async (e)=>{
+  // // await  setConversations(e.target.value)
+
+  // console.log(conversations)
+  
+  // }
+
   return (
     <>
   
       <div className="messenger">
         <div className="chatMenu">
           <div className="chatMenuWrapper">
-            <input placeholder="Search for friends" className="chatMenuInput" />
+            <h1> Conversations </h1>
             {conversations.map((c) => (
               <div onClick={() => setCurrentChat(c)}>
                 <Conversation conversation={c} currentUser={user} />
+
               </div>
             ))}
           </div>
@@ -166,7 +174,7 @@ export default function Messenger() {
             )}
           </div>
         </div>
-        <div className="chatOnline">
+        {/* <div className="chatOnline">
           <div className="chatOnlineWrapper">
             <ChatOnline
               onlineUsers={onlineUsers}
@@ -174,7 +182,7 @@ export default function Messenger() {
               setCurrentChat={setCurrentChat}
             />
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );
