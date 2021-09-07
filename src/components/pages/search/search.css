@@ -1,0 +1,49 @@
+
+.bodySearch{
+    display: flex;
+    flex:9;
+}
+
+.rightBar{
+    flex: 9;
+}
+
+.searchDiv{
+    margin: 40px;
+    border-radius:50px;
+     background-color:black; 
+     border:"2px solid gray"; background-color:#f2f2f2
+}
+
+.searchInp{
+    width: 85%;
+    border-radius:50px;
+     background-Color:#f2f2f2;
+     margin-left:8px;
+     border:#e6e6e6; 
+}
+.searchInp:focus { 
+    outline: none !important;
+    
+    
+}
+
+/* textarea:focus { 
+    outline: none !important;
+    border-color: #719ECE;
+    box-shadow: 0 0 10px #719ECE;
+} */
+
+.iconSearch{
+    transition: all 0.3s linear;
+}
+.iconSearch:hover {
+    transform: scale(2);
+  }
+
+.searchBtn{
+    margin: 5px;
+    border-radius:50px;
+    border:#d9d9d9;
+    background-color:#d9d9d9 ;
+}
