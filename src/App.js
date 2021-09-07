@@ -58,7 +58,7 @@ function App() {
       {/* <Rigester /> */}
       <ThemeProvider theme={theme}>
       <Router>
-        {loggedIn && <PrimarySearchAppBar />}
+        {loggedIn && user.verified && <PrimarySearchAppBar />}
         <Switch>
           <Route exact path="/">
             {!loggedIn && <User />}

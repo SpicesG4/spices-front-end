@@ -104,6 +104,7 @@ export default function PrimarySearchAppBar() {
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
+    console.log("eraek,l")
   };
 
   const handleMobileMenuClose = () => {
@@ -185,7 +186,6 @@ export default function PrimarySearchAppBar() {
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
-          color="inherit"
         >
           <ListIcon />
         </IconButton>
