@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../context/auth';
 import { FormGroup, InputGroup, Button, Card, Label } from "@blueprintjs/core";
 import "./signin.css"
-import { Link } from "react-router-dom";
+import { Link ,Redirect} from "react-router-dom";
 
 
 function Signin() {
@@ -41,7 +41,7 @@ function Signin() {
             type="password" />
 
           <button onClick={handleSubmit} >signin</button>
-       
+       {loggedIn && <Redirect to="/" />}
         <Link to="/signup" style={{ textDecoration: "none", color: "white" }}>
           <button >signup</button>
         </Link>

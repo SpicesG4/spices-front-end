@@ -144,12 +144,12 @@ export default function PrimarySearchAppBar() {
       </MenuItem>
       <MenuItem onClick={handleMenuClose}>
 
-<a href="/" style={{ textDecoration: "none" }}>
-
+{/* <a href="/" style={{ textDecoration: "none" }}> */}
+<Link to="/" style={{ textDecoration: "none" }}>
         <p onClick={logout} >logout</p>  
-          <Signin />
-          
-</a>
+        {/* {!loggedIn && <Redirect to="/" />} */}
+        </Link> 
+{/* </a> */}
       </MenuItem>
       {user&&  user.role == "admin" &&<MenuItem onClick={handleMenuClose}>
         <Link to="/admin" style={{ textDecoration: "none" }}>

@@ -19,6 +19,7 @@ function Auth(props) {
   const { loggedIn, user } = useContext(AuthContext);
 
   // let okToRender = loggedIn  false;
+  
   return (
     <div>
       {/* <SignInForm /> */}
@@ -33,14 +34,14 @@ function Auth(props) {
           </Unless>
           <When condition={user?.verified}>
             {/* <Home /> */}
-{/* <ChefRecipes/> */}
+            {/* <ChefRecipes/> */}
 
           </When>
         </Then>
         <Else>
           <div style={{ textAlign: 'center', marginTop: '100px' }}>
             {/* <Rigester /> */}
-          
+
             {/* <Signin /> */}
 
           </div>
