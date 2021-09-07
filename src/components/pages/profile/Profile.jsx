@@ -121,7 +121,7 @@ function Profile() {
                   }
                   alt=""
                 />
-                <span className="rightbarOnline profileUserImg" ><AddAPhotoIcon style={{
+                {(currentUser.username === user.username) && <span className="rightbarOnline profileUserImg" ><AddAPhotoIcon style={{
                   'box-shadow': '0 0 3px 3px #c5c3c3',
                   "backgroundColor": "#c5c3c3",
                   "border-radius": "30%",
@@ -137,7 +137,7 @@ function Profile() {
                   >
                     {body}
                   </Modal>
-                </span>
+                </span>}
               </div>
             </div>
             <div className="profileInfo">
