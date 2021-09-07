@@ -4,7 +4,7 @@
 .body {
 	font-family: poppins;
 	font-size: 16px;
-	color: #fff;
+	/* color: rgb(248, 244, 244); */
 }
 .form-box {
 	background-color: rgba(0, 0, 0, 0.5);
@@ -85,7 +85,8 @@
 	font-size: 14px;
 }
 .form-box button {
-	background-color: deepskyblue;
+	background-color:rgb(230,92,0);
+	/* background-color: deepskyblue; */
 	color: #fff;
 	border: none;
 	border-radius: 5px;
