@@ -208,8 +208,8 @@ export default function PrimarySearchAppBar() {
             <MenuIcon />
           </IconButton> */}
 
-          <Typography className={classes.title} variant="h6"  noWrap>
-          <Link to="/" style={{ textDecoration: "none", color:"white"}}>
+          <Typography className={classes.title} variant="h6"  noWrap style={{marginRight:" 125px ", marginLeft:"40px", fontWeight:"700px"}}>
+          <Link to="/" style={{ textDecoration: "none", color:"white", fontWeight:"650px" }}>
           Spices
           </Link>
           </Typography>
@@ -228,28 +228,34 @@ export default function PrimarySearchAppBar() {
             /> */}
           {/* </div> */}
           <div style={{margin:"20px"}}>
-          <HomeIcon />
-          <Link to="/home" style={{ textDecoration: "none", color:"white"}}>
+          {/* <HomeIcon /> */}
+          <Link to="/home" style={{ textDecoration: "none", color:"rgba(248, 248, 242, 0.8)"}}>
             Home  
           </Link>
           </div>
           <div style={{margin:"20px"}}>
-          <AccountCircle/>
-          <Link to="/profile" style={{ textDecoration: "none",color:"white" }}>
+          {/* <AccountCircle/> */}
+          <Link to="/profile" style={{ textDecoration: "none",color:"rgba(248, 248, 242, 0.8)" }}>
            Profile  
         </Link>
         </div>
         <div style={{margin:"20px"}}>
-        <SupervisedUserCircleIcon/>
-        <Link to="/followers" style={{ textDecoration: "none" ,color:"white"}}>
+        {/* <SupervisedUserCircleIcon/> */}
+        <Link to="/followers" style={{ textDecoration: "none" ,color:"rgba(248, 248, 242, 0.8)"}}>
            Followers  
+        </Link>
+        </div>
+        <div style={{margin:"20px"}}>
+        <Link to="/Search" style={{ textDecoration: "none" ,color:"rgba(248, 248, 242, 0.8)"}}>
+           Search  
         </Link>
         </div>
        {user&& user.role == "admin" &&<div style={{margin:"20px"}}>
         <PolicyIcon/>
-        <Link to="/admin" style={{ textDecoration: "none",color:"white" }}>
+        <Link to="/admin" style={{ textDecoration: "none",color:"rgba(248, 248, 242, 0.8)" }}>
            Admin
         </Link>
+
         </div>}
         
           <div className={classes.grow} />
