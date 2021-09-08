@@ -19,7 +19,7 @@ function Follow() {
     console.log(user)
 
     // will be filtered in order not to return (myself) to the lisr  {current user} as well
-    const allchefs = await axios.get("http://localhost:3001/list-chef/", {
+    const allchefs = await axios.get("https://spice-g4.herokuapp.com/list-chef/", {
       headers: {
         Authorization: token
       }
@@ -29,7 +29,7 @@ function Follow() {
   async function follow(id) {
 
     try {
-      const res = await axios.put("http://localhost:3001/follow/" + id, { userId: user._id }, {
+      const res = await axios.put("https://spice-g4.herokuapp.com/follow/" + id, { userId: user._id }, {
         headers: {
           Authorization: token
         }
@@ -48,7 +48,7 @@ function Follow() {
   async function unfollow(id) {
     console.log(id)
     try {
-      const res = await axios.put("http://localhost:3001/unfollow/" + id, { userId: user._id }, {
+      const res = await axios.put("https://spice-g4.herokuapp.com/unfollow/" + id, { userId: user._id }, {
         headers: {
           Authorization: token
         }
@@ -68,11 +68,11 @@ function Follow() {
 
   return (
     <>
-   
+
 
       <div className="bodyu">
-{dummystate}
-   <Sidebar />
+        {dummystate}
+        <Sidebar />
         <div className="rightBar">
           {chefs?.map((item) => {
             return (
@@ -97,7 +97,7 @@ function Follow() {
                   <div class="stats">
 
                     <div class="stat">
-                      <span class="stat-num">{item.followings.length }</span>
+                      <span class="stat-num">{item.followings.length}</span>
                       <span class="stat-name">FOLLOWING</span>
                     </div>
 

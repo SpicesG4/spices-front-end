@@ -9,29 +9,29 @@ function Follow() {
   const [chefs, UpdateAllchefs] = useState([])
   const [followOrUnfollow, UpdatefollowToUnfollow] = useState('follow this chef')
 
-  useEffect( async () => {
-  await fetchUser()
- console.log(user)
+  useEffect(async () => {
+    await fetchUser()
+    console.log(user)
 
-      // will be filtered in order not to return (myself) to the lisr  {current user} as well
-      const allchefs = await axios.get("http://localhost:3001/list-chef/", {
+    // will be filtered in order not to return (myself) to the lisr  {current user} as well
+    const allchefs = await axios.get("https://spice-g4.herokuapp.com/list-chef/", {
+      headers: {
+        Authorization: token
+      }
+    })
+    UpdateAllchefs(allchefs.data)
+  }, [])
+  async function follow(id) {
+    console.log("id", id, "user ID" + user._id)
+    try {
+      const res = await axios.put("https://spice-g4.herokuapp.com/follow/" + id, { userId: user._id }, {
         headers: {
           Authorization: token
         }
       })
-      UpdateAllchefs(allchefs.data)
-  }, [])
-  async function follow(id) {
-    console.log("id",id , "user ID"+user._id)
-    try {
-      const res = await axios.put("http://localhost:3001/follow/" + id, { userId: user._id }, {
-        headers: {
-          Authorization:token
-        }
-      })
       console.log(user)
-       fetchUser()
-       console.log("res",res.data)
+      fetchUser()
+      console.log("res", res.data)
 
     } catch (err) {
 
@@ -41,15 +41,15 @@ function Follow() {
   async function unfollow(id) {
     console.log(id)
     try {
-      const res = await axios.put("http://localhost:3001/unfollow/" + id, { userId: user._id }, {
+      const res = await axios.put("https://spice-g4.herokuapp.com/unfollow/" + id, { userId: user._id }, {
         headers: {
-          Authorization:token
+          Authorization: token
         }
       })
       console.log(user)
-      console.log("res",res.data)
+      console.log("res", res.data)
 
-       fetchUser()
+      fetchUser()
       // or change response
     } catch (err) {
 

@@ -13,7 +13,7 @@ import Edit from "../edit/Edit"
 
 
 
-export default function Post({ recipes ,handleDelete, idx,getid ,username}) {
+export default function Post({ recipes, handleDelete, idx, getid, username }) {
 
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -38,7 +38,7 @@ export default function Post({ recipes ,handleDelete, idx,getid ,username}) {
 
 
   useEffect(() => {
-   
+
     setIsLiked(recipes.likes.includes(currentUser._id));
     // console.log(token);
   }, [currentUser._id, recipes.likes]);
@@ -47,7 +47,7 @@ export default function Post({ recipes ,handleDelete, idx,getid ,username}) {
 
     // console.log(recipes,"res");
     const fetchUser = async () => {
-      const res = await axios.get(`http://localhost:3001/users?userId=${recipes.userId}`);
+      const res = await axios.get(`https://spice-g4.herokuapp.com/users?userId=${recipes.userId}`);
       setUser(res.data);
     };
     fetchUser();
@@ -55,7 +55,7 @@ export default function Post({ recipes ,handleDelete, idx,getid ,username}) {
 
   const likeHandler = () => {
     try {
-      axios.put("http://localhost:3001/like/" + recipes._id, { userId: currentUser._id }, {
+      axios.put("https://spice-g4.herokuapp.com/like/" + recipes._id, { userId: currentUser._id }, {
         headers: {
           Authorization: 'Bearer ' + token //the token is a variable which holds the token
         }
@@ -85,7 +85,7 @@ export default function Post({ recipes ,handleDelete, idx,getid ,username}) {
             <span className="postDate">{format(recipes.createdAt)}</span>
           </div>
           <div className="postTopRight">
-          { username == currentUser.username && <MoreVert onClick={handleClick}  /> }
+            {username == currentUser.username && <MoreVert onClick={handleClick} />}
 
             <Menu
               id="simple-menu"
@@ -94,22 +94,22 @@ export default function Post({ recipes ,handleDelete, idx,getid ,username}) {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              <MenuItem onClick={()=>{
+              <MenuItem onClick={() => {
                 handleClose();
-                 handleDelete(idx);
+                handleDelete(idx);
               }
-                }>Delete</MenuItem>
-              <MenuItem onClick={()=>{handleClose();editpost()}}>Edit</MenuItem>
-             
+              }>Delete</MenuItem>
+              <MenuItem onClick={() => { handleClose(); editpost() }}>Edit</MenuItem>
+
             </Menu>
             {
               updatpost &&
-              <Edit idx={idx} recipes={recipes} getid={getid}/>
+              <Edit idx={idx} recipes={recipes} getid={getid} />
             }
           </div>
         </div>
         <div className="postCenter">
-          <img className="postImg" src={"http://localhost:3001/images/"+recipes.img} alt="" />
+          <img className="postImg" src={"https://spice-g4.herokuapp.com/images/" + recipes.img} alt="" />
           <span className="postText">{recipes?.description}</span>
         </div>
         <div className="postBottom">
