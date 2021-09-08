@@ -25,6 +25,8 @@ export default function Messenger() {
 
   useEffect(() => {
 
+    fetchUser()
+
     socket.current = io("https://soccket.herokuapp.com");
     socket.current.on("getMessage", (data) => {
       setArrivalMessage({

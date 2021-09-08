@@ -7,3 +7,20 @@
 .rightbarWrapper {
   padding: 20px 20px 0 0;
 }
+
+.birthdayContainer {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.birthdayImg {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.birthdayText {
+  font-weight: 300;
+  font-size: 15px;
+}

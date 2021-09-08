@@ -84,11 +84,10 @@ function Friends({ user }) {
 
 
 
-        <h4 className="rightbarTitle">User information</h4>
+
         <div className="rightbarInfo">
           <div className="rightbarInfoItem">
-            <span className="rightbarInfoKey">City:</span>
-            <span className="rightbarInfoValue">{user.city}</span>
+
           </div>
           {/* <div className="rightbarInfoItem">
                         <span className="rightbarInfoKey">From:</span>
@@ -110,18 +109,18 @@ function Friends({ user }) {
           {friends.map((friend) => (
             <Link
               to={"/profile/" + friend.username}
-              style={{ textDecoration: "none" }}
+              style={{ textDecoration: "none" ,color:"black"}}
             >
               <div className="rightbarFollowing">
-                {/* <img
-                                    src={
-                                        friend.profilePicture
-                                            ?  friend.profilePicture
-                                            : "https://t3.ftcdn.net/jpg/03/60/23/04/240_F_360230408_OQdxPfi8pbDjqC7leeOAd312Ccmff84u.jpg"
-                                        }
-                                    alt=""
-                                    className="rightbarFollowingImg"
-                                /> */}
+                <img
+                  src={
+                    friend.profilePicture
+                      ? friend.profilePicture
+                      : "https://t3.ftcdn.net/jpg/03/60/23/04/240_F_360230408_OQdxPfi8pbDjqC7leeOAd312Ccmff84u.jpg"
+                  }
+                  alt=""
+                  className="rightbarFollowingImg"
+                />
                 <span className="rightbarFollowingName">{friend.username}</span>
               </div>
             </Link>

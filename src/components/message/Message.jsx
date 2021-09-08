@@ -12,7 +12,9 @@ export default function Message({ message, own }) {
       <div className="messageTop">
         <img
           className="messageImg"
-          src={ user.profilePicture }
+
+          src="https://t3.ftcdn.net/jpg/03/60/23/04/240_F_360230408_OQdxPfi8pbDjqC7leeOAd312Ccmff84u.jpg"
+
           alt=""
         />
         <p className="messageText">{message.text}</p>

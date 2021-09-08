@@ -93,7 +93,7 @@ export default function Share() {
             <form className="shareBottom" onSubmit={submitHandler}>
               <div className="shareOptions">
                 <label htmlFor="file" className="shareOption">
-                  <PhotoLibraryIcon htmlColor="rgb(102,102,52)" className="shareIcon" />
+                  <PhotoLibraryIcon htmlColor="#00cc00" className="shareIcon" />
                   <span className="shareOptionText">Photo or Video</span>
                   <input
                     style={{ display: "none" }}

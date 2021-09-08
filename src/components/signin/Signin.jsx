@@ -28,9 +28,19 @@ function Signin() {
   return (
     <>
       <div className="body" >
+        <div className="wrap">
+      <div className="loginLeft">
+          <h3 className="loginLogo">Spices</h3>
+          <h4 className="loginDesc">
+          Let food be the medicine and medicine be the food
+          </h4>
+          <h4 className="loginDesc">
+          Join our website.
+          </h4>
+        </div>
         <div className="form-box">
           <div className="header-text">
-            Signin Form
+            Signin 
           </div>
           <input placeholder="Your Email Address" onChange={handleChange}
             name="email"
@@ -45,6 +55,7 @@ function Signin() {
         <Link to="/signup" style={{ textDecoration: "none", color: "white" }}>
           <button >signup</button>
         </Link>
+         </div>
          </div>
       </div>
     </>
