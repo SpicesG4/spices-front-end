@@ -6,7 +6,7 @@ import swal from 'sweetalert';
 import jwt from 'jsonwebtoken';
 import superagent from 'superagent';
 import base64 from 'base-64';
-const API = 'http://localhost:3001';
+const API = 'https://spice-g4.herokuapp.com';
 export const AuthContext = React.createContext();
 
 
@@ -72,7 +72,7 @@ function Auth(props) {
     const user = jwt.decode(token);
     if (user) {
 
-     await setLoginState(true, token, user.username);
+      await setLoginState(true, token, user.username);
       fetchUser1(user.username._id)
     }
 
@@ -101,12 +101,12 @@ function Auth(props) {
 
 
   async function fetchUser1(idd) {
-    const userss = await axios.get(`http://localhost:3001/users`, { params: { userId: idd } })
+    const userss = await axios.get(`https://spice-g4.herokuapp.com/users`, { params: { userId: idd } })
     setUser(userss.data)
   }
 
   async function fetchUser() {
-    const userss = await axios.get(`http://localhost:3001/users`, { params: { userId: user._id } })
+    const userss = await axios.get(`https://spice-g4.herokuapp.com/users`, { params: { userId: user._id } })
     setUser(userss.data)
   }
   return (

@@ -64,7 +64,7 @@ function Profile() {
       "profilePicture": profipic,
       "coverPicture": coverPic
     }
-    await axios.put(`http://localhost:3001/updateUser/${user._id}`, bodyObj)
+    await axios.put(`https://spice-g4.herokuapp.com/updateUser/${user._id}`, bodyObj)
     fetchUser();
   }
   const body = (
@@ -78,11 +78,11 @@ function Profile() {
 
   const fetchUser = async () => {
 
-    const res = username ? await axios.get(`http://localhost:3001/users?username=${username}`, {
+    const res = username ? await axios.get(`https://spice-g4.herokuapp.com/users?username=${username}`, {
       headers: {
         Authorization: token
       }
-    }) : await axios.get(`http://localhost:3001/users?userId=${user._id}`, {
+    }) : await axios.get(`https://spice-g4.herokuapp.com/users?userId=${user._id}`, {
       headers: {
         Authorization: token
       }
