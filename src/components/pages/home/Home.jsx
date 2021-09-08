@@ -18,7 +18,6 @@ function Home() {
     const auth = useContext(AuthContext);
 
     useEffect(() => {
-        console.log(user, "user mo auth from friends")
 
         const getChef = async () => {
             try {
@@ -28,7 +27,6 @@ function Home() {
                     }
                 });
                 setChef(chefList.data);
-                console.log(chefList)
             } catch (err) {
                 console.log(err);
             }
@@ -41,8 +39,8 @@ function Home() {
         return (
             <>
 
-                <div className="birthdayContainer">
-                    <img className="birthdayImg" src="assets/gift.png" alt="" />
+               <div className="birthdayContainer">
+                    <img className="birthdayImg" src="https://media.istockphoto.com/vectors/badge-chef-vector-id165960836?k=20&m=165960836&s=612x612&w=0&h=DUXHdgjxbv7QhEWee8tcEyNsArDXaHZqpLVQDtHKm1k=" alt="" />
                     <span className="birthdayText">
                         <b>Suggested Chefs</b>
                     </span>
@@ -50,29 +48,32 @@ function Home() {
                 <img className="rightbarAd" src="assets/ad.png" alt="" />
                 <ul className="rightbarFriendList">
                     {chef.map((u) => (
-                        <Link to={`/profile/${u.username}`} style={{ textDecoration: "none" }}>
+                        <Link to={`/profile/${u.username}`} style={{ textDecoration: "none", color: "black" }}>
                             <Chef key={u.id} user={u} />
                         </Link>
                     ))}
                 </ul>
-
             </>
+
         );
     };
 
 
-
+   
 
     const { loggedIn, user, verified } = useContext(AuthContext);
     return (
 
         <div className="homeContainer">
-<Sidebar/>
-            <HomeRecipe currunt={auth.user} />
-            {/* <div className="rightbar"> */}
+     
+            <Sidebar />
+          
+            {/* <div className="sidebarHome"> */}
+              <HomeRecipe currunt={auth.user} />
             <div className="rightbarWrapper">
                 <HomeRightbar />
             </div>
+            
             {/* </div> */}
         </div>
     )

@@ -26,8 +26,8 @@ export default function Conversation({ conversation, currentUser }) {
         className="conversationImg"
         src={
           user?.profilePicture
-            ? PF + user.profilePicture
-            : PF + "person/noAvatar.png"
+            ?  user.profilePicture
+            :  "https://t3.ftcdn.net/jpg/03/60/23/04/240_F_360230408_OQdxPfi8pbDjqC7leeOAd312Ccmff84u.jpg"
         }
         alt=""
       />

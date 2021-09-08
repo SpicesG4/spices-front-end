@@ -10,7 +10,7 @@ import { Add, Remove } from "@material-ui/icons";
 
 
 
-function Friends({ user }) { 
+function Friends({ user }) {
 
   const [friends, setFriends] = useState([]);
 
@@ -31,7 +31,7 @@ function Friends({ user }) {
     const getFriends = async () => {
 
       try {
-        const friendList = await axios.get("https://spice-g4.herokuapp.com/getFriends/"+user._id);
+        const friendList = await axios.get("https://spice-g4.herokuapp.com/getFriends/" + user._id);
 
         setFriends(friendList.data);
         // console.log(user.followings?.includes(auth.user._id),user.followings,auth.user._id)
@@ -56,14 +56,14 @@ function Friends({ user }) {
         const friendList = await axios.put(`https://spice-g4.herokuapp.com/unfollow/${user._id}`, { userId: auth.user._id });
 
         setFriends(friendList.data);
-         setFollowed(false)
-        
+        setFollowed(false)
+
       } else {
         const friendList = await axios.put(`https://spice-g4.herokuapp.com/follow/${user._id}`, { userId: auth.user._id });
-      
+
         setFriends(friendList.data);
-         setFollowed(true)
-       
+        setFollowed(true)
+
 
       }
     } catch (err) {
@@ -74,7 +74,7 @@ function Friends({ user }) {
   const ProfileRightbar = () => {
     return (
       <>
-      {/* follow */}
+        {/* follow */}
         {user.username !== auth.user.username && (
           <button className="rightbarFollowButton" onClick={handleClick}>
             {followed ? "Unfollow" : "Follow"}
@@ -84,11 +84,10 @@ function Friends({ user }) {
 
 
 
-        <h4 className="rightbarTitle">User information</h4>
+
         <div className="rightbarInfo">
           <div className="rightbarInfoItem">
-            <span className="rightbarInfoKey">City:</span>
-            <span className="rightbarInfoValue">{user.city}</span>
+
           </div>
           {/* <div className="rightbarInfoItem">
                         <span className="rightbarInfoKey">From:</span>
@@ -110,18 +109,18 @@ function Friends({ user }) {
           {friends.map((friend) => (
             <Link
               to={"/profile/" + friend.username}
-              style={{ textDecoration: "none" }}
+              style={{ textDecoration: "none" ,color:"black"}}
             >
               <div className="rightbarFollowing">
-                {/* <img
-                                    src={
-                                        friend.profilePicture
-                                            ?  friend.profilePicture
-                                            : "https://t3.ftcdn.net/jpg/03/60/23/04/240_F_360230408_OQdxPfi8pbDjqC7leeOAd312Ccmff84u.jpg"
-                                        }
-                                    alt=""
-                                    className="rightbarFollowingImg"
-                                /> */}
+                <img
+                  src={
+                    friend.profilePicture
+                      ? friend.profilePicture
+                      : "https://t3.ftcdn.net/jpg/03/60/23/04/240_F_360230408_OQdxPfi8pbDjqC7leeOAd312Ccmff84u.jpg"
+                  }
+                  alt=""
+                  className="rightbarFollowingImg"
+                />
                 <span className="rightbarFollowingName">{friend.username}</span>
               </div>
             </Link>

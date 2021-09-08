@@ -15,24 +15,14 @@ function Login(props) {
   const contextType = AuthContext
 
   const handleChange = (e) => {
-    // if (e.target.name === 'username') {
-    //   console.log(e.target.value);
-    //   setUsername(e.target.value);
-    // } else 
+  
     if (e.target.name === 'password') {
-      // console.log(e.target.value);
       setPassword(e.target.value);
     } else if (e.target.name === 'email') {
-      // console.log(e.target.value);
       setEmail(e.target.value);
     }
   };
-  // const handleChange = (e) => {
-  //   setUsername(e.target.value)
-  // }
-  // const handleChange1 = (e) => {
-  //   setPassword(e.target.value)
-  // }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     login(email, password)

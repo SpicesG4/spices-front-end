@@ -77,10 +77,11 @@ function Auth(props) {
   };
 
 
-  const signup = async (username, password, role, email,profilePicture,coverPicture) => {
+  const signup = async (username, password, role, email) => {
     try {
+      console.log(username, password, role, email)
       const response = await superagent
-        .post(`${API}/signup`, { username, password, role, email,profilePicture,coverPicture});
+        .post(`${API}/signup`, { username, password, role, email});
       validateToken(response.body.token);
     } catch (e) {
       console.error('Signup Error', e.message);

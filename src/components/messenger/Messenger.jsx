@@ -17,15 +17,15 @@ export default function Messenger() {
   const [arrivalMessage, setArrivalMessage] = useState(null);
   const [onlineUsers, setOnlineUsers] = useState([]);
   const socket = useRef();
-  const { user,fetchUser } = useContext(AuthContext);
+  const { user, fetchUser } = useContext(AuthContext);
   const scrollRef = useRef();
 
 
 
-  
+
   useEffect(() => {
-    
-    socket.current = io("http://localhost:8900");
+    fetchUser()
+    socket.current = io("https://soccket.herokuapp.com");
     socket.current.on("getMessage", (data) => {
       setArrivalMessage({
         sender: data.senderId,
@@ -34,7 +34,7 @@ export default function Messenger() {
       });
     });
 
-    console.log("user",user)
+    console.log("user", user)
   }, []);
 
 
@@ -61,7 +61,7 @@ export default function Messenger() {
         const res = await axios.get("https://spice-g4.herokuapp.com/conversations/" + user._id);
         setConversations(res.data);
 
-        console.log(res.data,"data")
+        console.log(res.data, "data")
       } catch (err) {
         console.log(err);
       }
@@ -95,7 +95,7 @@ export default function Messenger() {
       conversationId: currentChat._id,
 
     };
-    console.log("conversation",JSON.stringify(conversations)
+    console.log("conversation", JSON.stringify(conversations)
     )
 
 
@@ -122,16 +122,24 @@ export default function Messenger() {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
+  // const choosefriend = async (e)=>{
+  // // await  setConversations(e.target.value)
+
+  // console.log(conversations)
+
+  // }
+
   return (
     <>
-  
+
       <div className="messenger">
         <div className="chatMenu">
           <div className="chatMenuWrapper">
-            <input placeholder="Search for friends" className="chatMenuInput" />
+            <h1> Conversations </h1>
             {conversations.map((c) => (
               <div onClick={() => setCurrentChat(c)}>
                 <Conversation conversation={c} currentUser={user} />
+
               </div>
             ))}
           </div>
