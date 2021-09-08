@@ -41,7 +41,7 @@ export default function Share() {
       newPost.img = fileName;
       // console.log(newPost);
       try {
-        await axios.post("https://spice-g4.herokuapp.com/upload", data, {
+        await axios.post("http://localhost:3001/upload", data, {
           headers: {
             Authorization: token
           }
@@ -49,7 +49,7 @@ export default function Share() {
       } catch (err) { }
     }
     try {
-      await axios.post("https://spice-g4.herokuapp.com/addfood", newPost, {
+      await axios.post("http://localhost:3001/addfood", newPost, {
         headers: {
           Authorization: token
         }

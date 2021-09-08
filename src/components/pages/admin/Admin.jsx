@@ -16,7 +16,7 @@ function Admin() {
 
 
       // will be filtered in order not to return (myself) to the lisr  {current user} as well
-      const allusers = await axios.get("https://spice-g4.herokuapp.com/listusers", {
+      const allusers = await axios.get("http://localhost:3001/listusers", {
         headers: {
           Authorization: token
         }
@@ -32,7 +32,7 @@ function Admin() {
 
     console.log(id)
     try {
-      const res = await axios.delete("https://spice-g4.herokuapp.com/deleteUser/" + id, {
+      const res = await axios.delete("http://localhost:3001/deleteUser/" + id, {
         headers: {
           Authorization: token
         },

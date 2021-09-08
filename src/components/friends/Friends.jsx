@@ -31,7 +31,7 @@ function Friends({ user }) {
     const getFriends = async () => {
 
       try {
-        const friendList = await axios.get("https://spice-g4.herokuapp.com/getFriends/"+user._id);
+        const friendList = await axios.get("http://localhost:3001/getFriends/"+user._id);
 
         setFriends(friendList.data);
         // console.log(user.followings?.includes(auth.user._id),user.followings,auth.user._id)
@@ -53,13 +53,13 @@ function Friends({ user }) {
       // console.log(auth.token)
       if (followed) {
         console.log(user._id)
-        const friendList = await axios.put(`https://spice-g4.herokuapp.com/unfollow/${user._id}`, { userId: auth.user._id });
+        const friendList = await axios.put(`http://localhost:3001/unfollow/${user._id}`, { userId: auth.user._id });
 
         setFriends(friendList.data);
          setFollowed(false)
         
       } else {
-        const friendList = await axios.put(`https://spice-g4.herokuapp.com/follow/${user._id}`, { userId: auth.user._id });
+        const friendList = await axios.put(`http://localhost:3001/follow/${user._id}`, { userId: auth.user._id });
       
         setFriends(friendList.data);
          setFollowed(true)

@@ -12,11 +12,9 @@ export default function HomeRecipe({ currunt }) {
 
   const fetchRecipes = async () => {
    
-  
-    const res =  await axios.get("https://spice-g4.herokuapp.com/getallfood/" + currunt._id, {
-        headers: {
-          Authorization: token
-        }
+  console.log(token)
+    const res =  await axios.get(`http://localhost:3001/getallfood/${currunt._id}`, {
+      headers: { Authorization: `Bearer ${token}` }
       });
       // console.log(res.data)
     setRecipes(
@@ -35,7 +33,7 @@ export default function HomeRecipe({ currunt }) {
 
   const handleDelete = async (i) => {
     // console.log(recipes)
-    const data = await axios.delete("https://spice-g4.herokuapp.com/deletefood/" + recipes[i]._id, {
+    const data = await axios.delete("http://localhost:3001/deletefood/" + recipes[i]._id, {
       headers: {
         Authorization: token
       },

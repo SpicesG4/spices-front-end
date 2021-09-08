@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 
 import superagent from 'superagent';
 import { AuthContext } from './auth'
-const API = 'https://spice-g4.herokuapp.com';
+const API = 'http://localhost:3001';
 export const SettingContext = React.createContext();
 
 

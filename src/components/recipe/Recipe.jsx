@@ -47,7 +47,7 @@ export default function Post({ recipes ,handleDelete, idx,getid ,username}) {
 
     // console.log(recipes,"res");
     const fetchUser = async () => {
-      const res = await axios.get(`https://spice-g4.herokuapp.com/users?userId=${recipes.userId}`);
+      const res = await axios.get(`http://localhost:3001/users?userId=${recipes.userId}`);
       setUser(res.data);
     };
     fetchUser();
@@ -55,7 +55,7 @@ export default function Post({ recipes ,handleDelete, idx,getid ,username}) {
 
   const likeHandler = () => {
     try {
-      axios.put("https://spice-g4.herokuapp.com/like/" + recipes._id, { userId: currentUser._id }, {
+      axios.put("http://localhost:3001/like/" + recipes._id, { userId: currentUser._id }, {
         headers: {
           Authorization: 'Bearer ' + token //the token is a variable which holds the token
         }
@@ -109,7 +109,7 @@ export default function Post({ recipes ,handleDelete, idx,getid ,username}) {
           </div>
         </div>
         <div className="postCenter">
-          <img className="postImg" src={"https://spice-g4.herokuapp.com/images/"+recipes.img} alt="" />
+          <img className="postImg" src={"http://localhost:3001/images/"+recipes.img} alt="" />
           <span className="postText">{recipes?.description}</span>
         </div>
         <div className="postBottom">
