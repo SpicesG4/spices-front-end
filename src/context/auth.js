@@ -6,7 +6,7 @@ import swal from 'sweetalert';
 import jwt from 'jsonwebtoken';
 import superagent from 'superagent';
 import base64 from 'base-64';
-const API = 'https://spice-g4.herokuapp.com';
+const API = 'http://localhost:3001';
 export const AuthContext = React.createContext();
 
 
@@ -17,7 +17,7 @@ function Auth(props) {
   const [user, setUser] = useState({})
   const [token, setToken] = useState("")
 
-  let setLoginState = (loggedIn, token, user) => {
+  let setLoginState = async (loggedIn, token, user) => {
     cookie.save('auth', token, { path: "/" });
     setUser(user);
     setLoggedIn(loggedIn);
@@ -68,12 +68,14 @@ function Auth(props) {
 
 
 
-  let validateToken = (token) => {
+  let validateToken = async (token) => {
     const user = jwt.decode(token);
     if (user) {
 
-      setLoginState(true, token, user.username);
+     await setLoginState(true, token, user.username);
+      fetchUser1(user.username._id)
     }
+
   };
 
 
@@ -84,7 +86,7 @@ function Auth(props) {
       const response = await superagent
         .post(`${API}/signup`, { username, password, role, email, profilePicture, coverPicture });
       validateToken(response.body.token);
-      swal("You Signed Up Successfully !", "please check your Email to verify ");
+      // swal("You Signed Up Successfully !", "please check your Email to verify ");
     } catch (e) {
       console.error('Signup Error', e.message);
     }
@@ -98,8 +100,13 @@ function Auth(props) {
   }, [loggedIn])
 
 
+  async function fetchUser1(idd) {
+    const userss = await axios.get(`http://localhost:3001/users`, { params: { userId: idd } })
+    setUser(userss.data)
+  }
+
   async function fetchUser() {
-    const userss = await axios.get(`https://spice-g4.herokuapp.com/users`, { params: { userId: user._id } })
+    const userss = await axios.get(`http://localhost:3001/users`, { params: { userId: user._id } })
     setUser(userss.data)
   }
   return (
