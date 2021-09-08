@@ -56,6 +56,7 @@ export default function Share() {
       });
       fetchUser()
       setDummystate(" ")
+       window.location.reload();
     } catch (err) { }
   };
 
