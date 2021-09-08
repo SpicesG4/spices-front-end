@@ -71,7 +71,7 @@ function Follow() {
 
 
       <div className="bodyu">
-        {dummystate}
+
         <Sidebar />
         <div className="rightBar">
           {chefs?.map((item) => {

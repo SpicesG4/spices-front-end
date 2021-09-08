@@ -56,6 +56,7 @@ export default function Share() {
       });
       fetchUser()
       setDummystate(" ")
+
     } catch (err) { }
   };
 
@@ -100,7 +101,8 @@ export default function Share() {
                     type="file"
                     id="file"
                     accept=".png,.jpeg,.jpg"
-                    onChange={(e) => setFile(e.target.files[0])}
+                    value={file}
+                    onChange={(e) => { setFile(e.target.files[0]) }}
                   />
                 </label>
                 {/* <div className="shareOption">
