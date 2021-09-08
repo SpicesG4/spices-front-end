@@ -34,7 +34,7 @@ export default function Edit({idx,recipes,getid}) {
       newPost.img = fileName;
       // console.log(newPost);
       try {
-        await axios.post("https://spice-g4.herokuapp.com/upload", data, {
+        await axios.post("http://localhost:3001/upload", data, {
           headers: {
             Authorization: token
           }
@@ -43,7 +43,7 @@ export default function Edit({idx,recipes,getid}) {
     }
     getid(idx)
     try {
-      await axios.put("https://spice-g4.herokuapp.com/updatefood/"+recipes._id, newPost, {
+      await axios.put("http://localhost:3001/updatefood/"+recipes._id, newPost, {
         headers: {
           Authorization: token
         }

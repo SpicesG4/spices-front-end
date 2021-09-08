@@ -26,7 +26,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
 import PolicyIcon from '@material-ui/icons/Policy';
 import Signin from '../signin/Signin';
-
+import logo from "./logo.PNG"
 
 
 const useStyles = makeStyles((theme) => ({
@@ -208,25 +208,18 @@ export default function PrimarySearchAppBar() {
             <MenuIcon />
           </IconButton> */}
 
-          <Typography className={classes.title} variant="h6"  noWrap style={{marginRight:" 125px ", marginLeft:"40px", fontWeight:"700px"}}>
+<Typography className={classes.title} variant="h6"  noWrap style={{marginRight:" 0px ", fontWeight:"700px"}}>
           <Link to="/" style={{ textDecoration: "none", color:"white", fontWeight:"650px" }}>
+          <img src={logo} alt="Logo" width="70px" height="60px"/>
+          </Link>
+          </Typography>
+          <Typography className={classes.title} variant="h6"  noWrap style={{marginRight:" 115px ", marginLeft:"0px", fontWeight:"700px"}}>
+          <Link to="/" style={{ textDecoration: "none", color:"black", fontWeight:"750px" }}>
           Spices
           </Link>
           </Typography>
 
-          {/* <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div> */}
-            {/* <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            /> */}
-          {/* </div> */}
+      
           <div style={{margin:"20px"}}>
           {/* <HomeIcon /> */}
           <Link to="/home" style={{ textDecoration: "none", color:"rgba(248, 248, 242, 0.8)"}}>
@@ -239,12 +232,12 @@ export default function PrimarySearchAppBar() {
            Profile  
         </Link>
         </div>
-        <div style={{margin:"20px"}}>
+        {/* <div style={{margin:"20px"}}> */}
         {/* <SupervisedUserCircleIcon/> */}
-        <Link to="/followers" style={{ textDecoration: "none" ,color:"rgba(248, 248, 242, 0.8)"}}>
+        {/* <Link to="/followers" style={{ textDecoration: "none" ,color:"rgba(248, 248, 242, 0.8)"}}>
            Followers  
-        </Link>
-        </div>
+        </Link> */}
+        {/* </div> */}
         <div style={{margin:"20px"}}>
         <Link to="/Search" style={{ textDecoration: "none" ,color:"rgba(248, 248, 242, 0.8)"}}>
            Search  

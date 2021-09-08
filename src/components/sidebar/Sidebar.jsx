@@ -59,6 +59,11 @@ export default function Sidebar() {
           </Link>
             <span className="sidebarListItemText">Srearch recipe</span>
           </li>
+          <li>
+          <Link to="/followers" style={{ textDecoration: "none" ,color:"rgba(248, 248, 242, 0.8)"}}>
+           Followers  
+        </Link>
+        </li>
           {/* <li className="sidebarListItem">
             <WorkOutline className="sidebarIcon" />
             <span className="sidebarListItemText">Jobs</span>

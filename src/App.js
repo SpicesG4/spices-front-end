@@ -3,13 +3,11 @@ import './App.css';
 import { AuthContext } from './context/auth';
 import { SettingContext } from './context/setting';
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
-// import Login from  "./components/pages/login/login";
-// import Signup from './components/pages/signup/signup';
+
 import { useContext, useState } from "react";
-// import Profile from "./components/pages/profile/Profile"
+
 import User from './components/User.jsx';
 
-// import SignInForm from './components/SignInForm.jsx'
 import PrimarySearchAppBar from "./components/header/Header"
 import Recipe from './components/recipe/Recipe';
 //Main pages
@@ -18,7 +16,7 @@ import Home from "./components/pages/home/Home"
 //Profile
 import Profile from './components/pages/profile/Profile';
 //Follow
-import Follow from "./components/pages/follow/Follow"
+
 import Messenger from './components/messenger/Messenger'
 
 //Admin
@@ -31,7 +29,7 @@ import { createTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/core';
 // import { SnackbarProvider } from 'notistack';
 import Collapse from '@material-ui/core/Collapse';
-import SocialProfileWithImage from './components/pages/follow/FollowChef';
+import Follow from './components/pages/follow/FollowChef';
 
 const theme = createTheme({
   palette: {
@@ -88,7 +86,7 @@ function App() {
           </Route>
 
           <Route exact path="/followers">
-<SocialProfileWithImage />
+<Follow />
             {/* <Follow /> */}
           </Route>
 

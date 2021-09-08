@@ -21,7 +21,7 @@ function Home() {
 
         const getChef = async () => {
             try {
-                const chefList = await axios.get("https://spice-g4.herokuapp.com/list-chef", {
+                const chefList = await axios.get("http://localhost:3001/list-chef", {
                     headers: {
                         Authorization: auth.token
                     }
