@@ -46,8 +46,10 @@ function Search() {
                 foodArr.map((item, index) => {
                     return (
                         <div className='recpiseDIV' style={{ display: 'flex', flexDirection: 'row', display: 'inline-block', margin: 'auto'}}>
+
                             <Card className='cardStyly' style={{ width: '19rem', margin: "30px", marginLeft: "20%", marginBottom: '30px', border: 'solid #e6e6e6', flex: '1', boxShadow: "3px 2px 3px 2px rgba(230, 230, 230, 0.87)" }}>
                                 <Card.Img className='img-card' variant="top" src={item.recipe.image} style={{ width: '18.9rem', height: '15rem', margin: 'auto', boxShadow: "0px 10px 5px #f5f5f0"}} />
+
                                 <Card.Body>
                                     <Card.Title className='titleStyly' >{item.recipe.label}</Card.Title>
                                     <Card.Text className="over-view" style={{ height: '6rem', overflow: 'auto' }} >

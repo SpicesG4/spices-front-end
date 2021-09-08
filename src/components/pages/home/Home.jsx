@@ -65,11 +65,13 @@ function Home() {
     return (
 
         <div className="homeContainer">
+
      
             <Sidebar />
           
             {/* <div className="sidebarHome"> */}
               <HomeRecipe currunt={auth.user} />
+
             <div className="rightbarWrapper">
                 <HomeRightbar />
             </div>

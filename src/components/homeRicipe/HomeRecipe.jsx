@@ -7,29 +7,27 @@ import "./homeRecipe.css"
 
 export default function HomeRecipe({ currunt }) {
   const [recipes, setRecipes] = useState([]);
-  const { user,token,fetchUser } = useContext(AuthContext);
+  const { user, token, fetchUser } = useContext(AuthContext);
 
 
   const fetchRecipes = async () => {
-   
-  
-    const res =  await axios.get("https://spice-g4.herokuapp.com/getallfood/" + currunt._id, {
-        headers: {
-          Authorization: token
-        }
-      });
-      // console.log(res.data)
+
+    console.log(token)
+    const res = await axios.get(`https://spice-g4.herokuapp.com/getallfood/${currunt._id}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    // console.log(res.data)
     setRecipes(
       res.data.sort((p1, p2) => {
         return new Date(p2.createdAt) - new Date(p1.createdAt);
       })
     );
-    
+
   };
 
 
   useEffect(() => {
-      fetchRecipes();
+    fetchRecipes();
   }, [currunt, currunt._id]);
 
 
@@ -43,23 +41,23 @@ export default function HomeRecipe({ currunt }) {
         userId: user._id
       }
     })
-     fetchRecipes();
-  
+    fetchRecipes();
+
   }
-const getid = (idx)=>{
-  // console.log("mmm")
-return recipes[idx]._id
-}
-  
+  const getid = (idx) => {
+    // console.log("mmm")
+    return recipes[idx]._id
+  }
+
 
   return (
     <div className="feed">
       <div className="feedWrapper">
         {/* {console.log(recipes)} */}
         {(!currunt || currunt.username === user.username) && <Share />}
-        {recipes.map((p,idx) => (
-          <Recipe key={p._id} recipes={p} handleDelete={handleDelete}  idx={idx} getid={getid} username={currunt.username} />
-          ))}  
+        {recipes.map((p, idx) => (
+          <Recipe key={p._id} recipes={p} handleDelete={handleDelete} idx={idx} getid={getid} username={currunt.username} />
+        ))}
       </div>
     </div>
   );

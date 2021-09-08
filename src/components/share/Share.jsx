@@ -11,11 +11,21 @@ import { useContext, useRef, useState } from "react";
 import { AuthContext } from "../../context/auth";
 import axios from "axios";
 
+
+
+
+
+
 export default function Share() {
-  const { user, token } = useContext(AuthContext);
+  const { user, token, fetchUser } = useContext(AuthContext);
 
   const description = useRef();
   const [file, setFile] = useState(null);
+
+
+
+
+
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -44,7 +54,8 @@ export default function Share() {
           Authorization: token
         }
       });
-      window.location.reload();
+      fetchUser()
+       window.location.reload();
     } catch (err) { }
   };
 
@@ -54,6 +65,7 @@ export default function Share() {
         user.role == "chef" &&
 
         <div className="share">
+  
           <div className="shareWrapper">
             <div className="shareTop">
               <img

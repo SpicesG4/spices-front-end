@@ -1,6 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../../context/auth'
 import axios from "axios";
+import "../follow/card.css"
+import Sidebar from "../../../components/sidebar/Sidebar"
+import { Remove } from "@material-ui/icons";
 
 function Admin() {
   const { token, user, setUser } = useContext(AuthContext);
@@ -46,19 +49,51 @@ function Admin() {
   }
 
   return (
-    <div>
-      {users?.map((item) => {
-        return (
-          <>
-           {(item.role !== 'admin') &&
-          <>
-            <p>{item.email}</p>
-            <p onClick={() => remove(item._id)} >Remove </p>
+    <div className="bodyu">
+
+      <Sidebar />
+      <div className="rightBar">
+
+        {users?.map((item) => {
+
+          return (
+            <>
+              {(item.role !== 'admin') &&
+                <>
+
+                  <div className="card">
+                    <div className="img-container">
+                      <div className="skewed">
+                        <div >
+                          <img id="img"
+                            src={
+                              item.profilePicture
+                                ? item.profilePicture
+                                : "https://t3.ftcdn.net/jpg/03/60/23/04/240_F_360230408_OQdxPfi8pbDjqC7leeOAd312Ccmff84u.jpg"
+                            }
+                          />
+                        </div>
+
+                      </div>
+
+                    </div>
+                    <div className="content">
+                      <h2>{item.username}</h2>
+                      <div class="stats">
+
+
+                      </div>
+                    </div>
+                    <button className="rightbarFollowButton" onClick={() => remove(item._id)} >Remove<Remove />  </button>
+
+                  </div>
+
+                </>
+              }
             </>
-            }
-          </>
-        )
-      })}
+          )
+        })}
+      </div>
     </div>
   )
 }

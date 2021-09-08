@@ -24,7 +24,9 @@ export default function Messenger() {
 
 
   useEffect(() => {
+
     fetchUser()
+
     socket.current = io("https://soccket.herokuapp.com");
     socket.current.on("getMessage", (data) => {
       setArrivalMessage({
@@ -174,7 +176,7 @@ export default function Messenger() {
             )}
           </div>
         </div>
-        <div className="chatOnline">
+        {/* <div className="chatOnline">
           <div className="chatOnlineWrapper">
             <ChatOnline
               onlineUsers={onlineUsers}
@@ -182,7 +184,7 @@ export default function Messenger() {
               setCurrentChat={setCurrentChat}
             />
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );

@@ -11,7 +11,7 @@ export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
   const [fol, setFol] = useState()
   useEffect(() => {
     const getFriends = async () => {
-      // const res = await axios.get("https://spice-g4.herokuapp.com/users/friends/" + currentId);
+      const res = await axios.get("https://spice-g4.herokuapp.com/users/friends/" + currentId);
       setFriends(user.followers);
 
       console.log("followers", onlineFriends)

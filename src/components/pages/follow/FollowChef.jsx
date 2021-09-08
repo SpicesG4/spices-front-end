@@ -12,6 +12,7 @@ function Follow() {
   const { token, user, setUser, fetchUser } = useContext(AuthContext);
   const [chefs, UpdateAllchefs] = useState([])
   const [followOrUnfollow, UpdatefollowToUnfollow] = useState('follow this chef')
+  const [dummystate, Setdummystate] = useState([])
 
   useEffect(async () => {
     await fetchUser()
@@ -24,7 +25,7 @@ function Follow() {
       }
     })
     UpdateAllchefs(allchefs.data)
-  }, [])
+  }, [dummystate])
   async function follow(id) {
 
     try {
@@ -34,6 +35,9 @@ function Follow() {
         }
       })
       fetchUser()
+      Setdummystate(res.data)
+
+
 
 
     } catch (err) {
@@ -51,21 +55,24 @@ function Follow() {
       })
 
       fetchUser()
+      Setdummystate(res.data)
+
       // or change response
     } catch (err) {
 
       console.log(err)
     }
+
   }
 
 
   return (
     <>
-   
+
 
       <div className="bodyu">
-
-   <Sidebar />
+        {dummystate}
+        <Sidebar />
         <div className="rightBar">
           {chefs?.map((item) => {
             return (

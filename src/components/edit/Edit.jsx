@@ -10,7 +10,7 @@ import { useContext, useRef, useState } from "react";
 import { AuthContext } from "../../context/auth";
 import axios from "axios";
 
-export default function Edit({idx,recipes,getid}) {
+export default function Edit({ idx, recipes, getid }) {
 
   // console.log(idx,"hhh",recipes)
   const { user, token } = useContext(AuthContext);
@@ -43,7 +43,7 @@ export default function Edit({idx,recipes,getid}) {
     }
     getid(idx)
     try {
-      await axios.put("https://spice-g4.herokuapp.com/updatefood/"+recipes._id, newPost, {
+      await axios.put("https://spice-g4.herokuapp.com/updatefood/" + recipes._id, newPost, {
         headers: {
           Authorization: token
         }

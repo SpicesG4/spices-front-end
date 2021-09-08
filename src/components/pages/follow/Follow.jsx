@@ -9,29 +9,29 @@ function Follow() {
   const [chefs, UpdateAllchefs] = useState([])
   const [followOrUnfollow, UpdatefollowToUnfollow] = useState('follow this chef')
 
-  useEffect( async () => {
-  await fetchUser()
- console.log(user)
+  useEffect(async () => {
+    await fetchUser()
+    console.log(user)
 
-      // will be filtered in order not to return (myself) to the lisr  {current user} as well
-      const allchefs = await axios.get("https://spice-g4.herokuapp.com/list-chef/", {
+    // will be filtered in order not to return (myself) to the lisr  {current user} as well
+    const allchefs = await axios.get("https://spice-g4.herokuapp.com/list-chef/", {
+      headers: {
+        Authorization: token
+      }
+    })
+    UpdateAllchefs(allchefs.data)
+  }, [])
+  async function follow(id) {
+    console.log("id", id, "user ID" + user._id)
+    try {
+      const res = await axios.put("https://spice-g4.herokuapp.com/follow/" + id, { userId: user._id }, {
         headers: {
           Authorization: token
         }
       })
-      UpdateAllchefs(allchefs.data)
-  }, [])
-  async function follow(id) {
-    console.log("id",id , "user ID"+user._id)
-    try {
-      const res = await axios.put("https://spice-g4.herokuapp.com/follow/" + id, { userId: user._id }, {
-        headers: {
-          Authorization:token
-        }
-      })
       console.log(user)
-       fetchUser()
-       console.log("res",res.data)
+      fetchUser()
+      console.log("res", res.data)
 
     } catch (err) {
 
@@ -43,13 +43,13 @@ function Follow() {
     try {
       const res = await axios.put("https://spice-g4.herokuapp.com/unfollow/" + id, { userId: user._id }, {
         headers: {
-          Authorization:token
+          Authorization: token
         }
       })
       console.log(user)
-      console.log("res",res.data)
+      console.log("res", res.data)
 
-       fetchUser()
+      fetchUser()
       // or change response
     } catch (err) {
 

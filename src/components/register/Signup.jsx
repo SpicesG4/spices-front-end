@@ -28,10 +28,12 @@ function Signup(props) {
       setEmail(e.target.value);
     }
 
+<
     else {
       console.log(e.target.value);
       setRole(e.target.value);
     }
+
   };
 
   const handleSubmit = (e) => {
@@ -42,6 +44,7 @@ function Signup(props) {
   return (
     <>
       <div className="body" >
+
       <div className="wrap">
       <div className="loginLeft">
           <h3 className="loginLogo">Spices</h3>
@@ -55,6 +58,7 @@ function Signup(props) {
         <div className="form-box">
           <div className="header-text">
             Signup
+=
           </div>
           <input placeholder="Your Email Address" onChange={handleChange}
             name="email"
@@ -66,7 +70,9 @@ function Signup(props) {
             required
             type="password" />
 
+
          
+
           <input id="terms" type="checkbox" />
           <label for="terms"></label>
           <span>Agree with <a href="#">Terms & Conditions</a>
@@ -76,7 +82,9 @@ function Signup(props) {
             <button >signin</button>
           </Link>
         </div>
+
 </div>
+
       </div>
     </>
   );

@@ -16,6 +16,7 @@
     "base-64": "^1.0.0",
     "bootstrap": "^5.1.0",
     "bourbon": "^7.0.0",
+    "cors": "^2.8.5",
     "jquery": "^3.6.0",
     "jsonwebtoken": "^8.5.1",
     "latest-version": "^6.0.0",
@@ -32,6 +33,7 @@
     "redux": "^4.1.1",
     "socket.io-client": "^4.2.0",
     "superagent": "^6.1.0",
+    "sweetalert": "^2.1.2",
     "timeago.js": "^4.0.2",
     "web-vitals": "^1.1.2",
     "yarn": "^1.22.10"

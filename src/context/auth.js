@@ -1,6 +1,7 @@
 import React, { Component, useState, useEffect } from 'react';
 import cookie from 'react-cookies';
 import axios from "axios";
+import swal from 'sweetalert';
 
 import jwt from 'jsonwebtoken';
 import superagent from 'superagent';
@@ -11,14 +12,13 @@ export const AuthContext = React.createContext();
 
 
 
-
 function Auth(props) {
   const [loggedIn, setLoggedIn] = useState(false)
   const [user, setUser] = useState({})
   const [token, setToken] = useState("")
 
-  let setLoginState = (loggedIn, token, user) => {
-    cookie.save('auth', token,{path:"/"});
+  let setLoginState = async (loggedIn, token, user) => {
+    cookie.save('auth', token, { path: "/" });
     setUser(user);
     setLoggedIn(loggedIn);
     setToken(token);
@@ -28,16 +28,16 @@ function Auth(props) {
   let login = async (username, password) => {
     try {
       const res = await superagent.post(`${API}/signin`).set('authorization', `Basic ${base64.encode(`${username}:${password}`)}`)
-      cookie.save('auth', res.body.token ,{path:"/"});
+      cookie.save('auth', res.body.token, { path: "/" });
       validateToken(res.body.token);
-     await  setUser(res.body.user)
+      await setUser(res.body.user)
 
 
       // fetchUser()
     }
-    
-    
-    
+
+
+
     catch (error) {
       console.log('LOGIN ERROR', error.message);
     }
@@ -68,13 +68,16 @@ function Auth(props) {
 
 
 
-  let validateToken = (token) => {
-        const user = jwt.decode(token);
-    if (user ) {
-  
-      setLoginState(true, token, user.username);
+  let validateToken = async (token) => {
+    const user = jwt.decode(token);
+    if (user) {
+
+      await setLoginState(true, token, user.username);
+      fetchUser1(user.username._id)
     }
+
   };
+
 
 
   const signup = async (username, password, role, email) => {
@@ -82,7 +85,9 @@ function Auth(props) {
       console.log(username, password, role, email)
       const response = await superagent
         .post(`${API}/signup`, { username, password, role, email});
+
       validateToken(response.body.token);
+      // swal("You Signed Up Successfully !", "please check your Email to verify ");
     } catch (e) {
       console.error('Signup Error', e.message);
     }
@@ -92,18 +97,23 @@ function Auth(props) {
   useEffect(() => {
     const token = cookie.load('auth');
     validateToken(token);
-    console.log(user,"user")
+    console.log(user, "user")
   }, [loggedIn])
 
 
-  async function fetchUser(){
-   const userss= await axios.get(`https://spice-g4.herokuapp.com/users`,{ params: { userId: user._id } }) 
+  async function fetchUser1(idd) {
+    const userss = await axios.get(`https://spice-g4.herokuapp.com/users`, { params: { userId: idd } })
     setUser(userss.data)
-    }
+  }
+
+  async function fetchUser() {
+    const userss = await axios.get(`https://spice-g4.herokuapp.com/users`, { params: { userId: user._id } })
+    setUser(userss.data)
+  }
   return (
     <div>
       <AuthContext.Provider
-        value={{ loggedIn, setLoggedIn, user, setUser, validateToken, logout, login, setLoginState, signup, token ,fetchUser}}
+        value={{ loggedIn, setLoggedIn, user, setUser, validateToken, logout, login, setLoginState, signup, token, fetchUser }}
       >
         {props.children}
       </AuthContext.Provider>

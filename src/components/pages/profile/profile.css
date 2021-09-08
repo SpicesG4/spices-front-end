@@ -3,7 +3,7 @@
 }
 
 .profileRight{
-    flex: 9;
+    flex: 7;
 }
 
 .profileCover{
@@ -17,6 +17,14 @@
     object-fit: cover;
 }
 
+.rightbarOnline{
+    position: relative;
+    top: -2px;
+    right: 0;
+ 
+border-radius: 30%;
+    /* border: 2px solid rgb(221, 34, 34); */
+}
 .profileUserImg{
     width: 150px;
     height: 150px;

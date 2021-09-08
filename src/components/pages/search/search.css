@@ -1,3 +1,4 @@
+
 .bodySearch{
   display: flex;
   flex:12;
@@ -7,10 +8,12 @@
 
 .rightBar{
   flex: 10;
+
 }
 
 
 .searchDiv{
+
   margin: 40px;
   border-radius:50px;
    background-color:black; 
@@ -50,3 +53,4 @@
   border:#d9d9d9;
   background-color:#f2f2f2;
 }
+
