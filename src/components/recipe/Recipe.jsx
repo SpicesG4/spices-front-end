@@ -33,7 +33,7 @@ export default function Post({ recipes, handleDelete, idx, getid, username }) {
 
   const [like, setLike] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
-  const [user, setUser] = useState({});
+  // const [user, setUser] = useState({});
   const { user: currentUser, token } = useContext(AuthContext);
 
 
@@ -43,16 +43,15 @@ export default function Post({ recipes, handleDelete, idx, getid, username }) {
     // console.log(token);
   }, [currentUser._id, recipes.likes]);
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    // console.log(recipes,"res");
-    const fetchUser = async () => {
-      const res = await axios.get(`https://spice-g4.herokuapp.com/users?userId=${recipes.userId}`);
-      setUser(res.data);
-    };
-    console.log('hello')
-    fetchUser();
-  }, [recipes.userId]);
+  //   // console.log(recipes,"res");
+  //   const fetchUser = async () => {
+  //     const res = await axios.get(`https://spice-g4.herokuapp.com/users?userId=${recipes.userId}`);
+  //     setUser(res.data);
+  //   };
+  //   fetchUser();
+  // }, [recipes.userId]);
 
   const likeHandler = () => {
     try {
@@ -71,18 +70,18 @@ export default function Post({ recipes, handleDelete, idx, getid, username }) {
       <div className="postWrapper">
         <div className="postTop">
           <div className="postTopLeft">
-            <Link to={`/profile/${user.username}`}>
+            <Link to={`/profile/${recipes.username}`}>
               <img
                 className="postProfileImg"
                 src={
-                  user.profilePicture
-                    ? user.profilePicture
+                  recipes.profilePicture
+                    ? recipes.profilePicture
                     : "https://t3.ftcdn.net/jpg/03/60/23/04/240_F_360230408_OQdxPfi8pbDjqC7leeOAd312Ccmff84u.jpg"
                 }
                 alt=""
               />
             </Link>
-            <span className="postUsername">{user.username}</span>
+            <span className="postUsername">{recipes.username?recipes.username:currentUser.username}</span>
             <span className="postDate">{format(recipes.createdAt)}</span>
           </div>
           <div className="postTopRight">

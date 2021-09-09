@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 import axios from "axios";
 import { useEffect, useState, useContext } from "react";
 import "./ChatOnline.css";
@@ -14,17 +15,34 @@ export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
       // const res = await axios.get("http://localhost:3001/users/friends/" + currentId);
       setFriends(user.followers);
 
-      console.log("followers", onlineFriends)
-      console.log("user.followers", user.followers)
+      // console.log("followers", onlineFriends)
+      // console.log("user.followers", user.followers)
 
     };
 
     getFriends();
-  }, [currentId]);
+  }, [user.followers]);
 
   useEffect(() => {
     setOnlineFriends(friends?.filter((f) => onlineUsers?.includes(f?._id)));
   }, [friends, onlineUsers]);
+
+  const getUsers = async () => {
+    const res = await axios.get("http://localhost:3001/users2");
+    let x = []
+    console.log('???', user.followers, res.data)
+    res.data.forEach((element, i) => {
+      // console.log(i, user?.followers,(element?._id))
+      // user?.followers?.includes(element?._id)
+      user?.followers?.includes(element?._id) ? x.push(element) : null
+    })
+    console.log('??', x)
+    setFriends(x)
+  }
+
+  useEffect(() => {
+    getUsers()
+  }, [user.followers])
 
 
   const postConversations = async (receiver) => {
@@ -61,12 +79,11 @@ export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
     }
 
   }
-nameUser()
+  // nameUser()
   return (
     <div className="chatOnline">
-      {console.log(user.followers)}
-      {user.followers?.map((o) => {
-        
+      {friends?.map((o) => {
+
 
         return (
           <div className="chatOnlineFriend" onClick={() => handleClick(o)}>
@@ -82,7 +99,7 @@ nameUser()
               />
               <div className="chatOnlineBadge"></div>
             </div>
-            <span className="chatOnlineName">{fol}</span>
+            <span className="chatOnlineName">{console.log(111, o)}</span>
           </div>
         )
       })}

@@ -34,7 +34,7 @@ export default function Messenger() {
       });
     });
 
-    console.log("user", user)
+    // console.log("user", user)
   }, []);
 
 
