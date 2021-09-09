@@ -81,7 +81,7 @@ export default function Post({ recipes, handleDelete, idx, getid, username }) {
                 alt=""
               />
             </Link>
-            <span className="postUsername">{recipes.username?recipes.username:currentUser.username}</span>
+            <span className="postUsername">{recipes.username}</span>
             <span className="postDate">{format(recipes.createdAt)}</span>
           </div>
           <div className="postTopRight">

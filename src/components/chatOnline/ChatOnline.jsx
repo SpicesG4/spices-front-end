@@ -12,7 +12,7 @@ export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
   const [fol, setFol] = useState()
   useEffect(() => {
     const getFriends = async () => {
-      // const res = await axios.get("http://localhost:3001/users/friends/" + currentId);
+      // const res = await axios.get("https://spice-g4.herokuapp.com/users/friends/" + currentId);
       setFriends(user.followers);
 
       // console.log("followers", onlineFriends)
@@ -28,7 +28,7 @@ export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
   }, [friends, onlineUsers]);
 
   const getUsers = async () => {
-    const res = await axios.get("http://localhost:3001/users2");
+    const res = await axios.get("https://spice-g4.herokuapp.com/users2");
     let x = []
     console.log('???', user.followers, res.data)
     res.data.forEach((element, i) => {
@@ -51,7 +51,7 @@ export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
       receiverId: receiver
     }
     try {
-      const res = await axios.post("http://localhost:3001/conversations/", body);
+      const res = await axios.post("https://spice-g4.herokuapp.com/conversations/", body);
     } catch (err) {
       console.log(err);
     }
@@ -63,7 +63,7 @@ export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
     await postConversations(reciveruser)
     try {
       const res = await axios.get(
-        `http://localhost:3001/find/${currentId}/${reciveruser}`
+        `https://spice-g4.herokuapp.com/find/${currentId}/${reciveruser}`
       );
       setCurrentChat(res.data);
     } catch (err) {
@@ -73,7 +73,7 @@ export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
   async function nameUser() {
     for (let i = 0; i < user.followers?.length; i++) {
 
-      const userss = await axios.get(`http://localhost:3001/users`, { params: { userId: user.followers[i] } })
+      const userss = await axios.get(`https://spice-g4.herokuapp.com/users`, { params: { userId: user.followers[i] } })
       setFol(userss.data.username)
       console.log(userss.data);
     }

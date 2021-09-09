@@ -17,11 +17,11 @@ function Profile() {
 
   const fetchUser = async () => {
 
-    const res = username ? await axios.get(`http://localhost:3001/users?username=${username}`, {
+    const res = username ? await axios.get(`https://spice-g4.herokuapp.com/users?username=${username}`, {
       headers: {
         Authorization: token
       }
-    }) : await axios.get(`http://localhost:3001/users?userId=${user._id}`)
+    }) : await axios.get(`https://spice-g4.herokuapp.com/users?userId=${user._id}`)
     setCurrentUser(res.data)
     // console.log(res.data,"res.data from profile")
   };
